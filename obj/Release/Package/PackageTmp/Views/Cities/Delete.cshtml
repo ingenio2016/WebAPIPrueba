@@ -1,0 +1,49 @@
+﻿@model WebAPIPrueba.Models.City
+
+@{
+    ViewBag.Title = "Municipios";
+}
+
+<h2 style="color:#000099">Administración de Municipios</h2>
+<h3>Borrar Registro</h3>
+
+
+<h3>¿Está seguro que desea borrar este municipio?</h3>
+<div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-primary btn-sm" style="background-color:#000099" /> |
+            @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style= "background-color:#333334" })
+        </div>
+    }
+</div>

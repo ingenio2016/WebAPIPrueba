@@ -1,0 +1,191 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Importar listado de Votantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var errores = ViewBag.Message1;
+}
+
+<style type="text/css">
+    /* Generic Styling, for Desktops/Laptops */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+            /*
+     Label the data
+     */
+            td:before {
+                content: attr(data-title);
+            }
+    }
+</style>
+
+<!--<![endif]-->
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h2 style="color:#000099">Subir Listados de Votantes</h2><!--[if !IE]><!-->
+
+        <div class="col-sm-6">
+            @using (Html.BeginForm("ImportExcel", "Voters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Usuario</label>
+                            @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label"></label>
+                            @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-12">
+                            <input type="file" id="FileUpload1" name="FileUpload1" /><br />
+                        </div>
+                    </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    
+                                   @if (ViewBag.Error != null)
+                                   {
+                                    <p style="color:darkgreen">@ViewBag.Error</p>
+                                   }
+                                @if (ViewBag.Message != null)
+                                {
+                                    <p style="color:darkgreen">@ViewBag.Message</p>
+                                }
+                                    <br />
+                                    <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="Submit" name="Submit" value="Cargar Listado" />
+                                </div>
+                            </div>
+                       
+                    <br />
+
+                </div>
+            }
+        </div>
+        <div class="col-sm-6">
+            @if (errores != null)
+            {
+               
+                    <table class="table table-striped">
+                        <tr>
+                            <td colspan="3">
+                                <h4>Se han encontrado las siguientes inconsistencias</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Documento</td>
+                            <td>Descripción de la Inconsistencia</td>
+                        </tr>
+                        @foreach (var item in errores)
+                        {
+                            <tr>
+                                <td>@item.document</td>
+                                <td>@item.mistakeDescription</td>
+                            </tr>
+                        }
+                    </table>
+               
+            }
+            else
+            {
+                <img class="img img-rounded" src="~/Fotos/Upload.png" style="height:280px;width:auto" />
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $("#userId").change(function () {
+                    $("#ReferId").empty();
+                    $("#ReferId").append('<option value="0">[Seleccione un Usuario]</option>');
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetPerfil")',
+                        dataType: 'json',
+                        data: { userId: $("#userId").val() },
+                        success: function (data) {
+                            $.each(data, function (i, data) {
+                                $("#ReferId").append('<option value="'
+                                 + data.ReferId + '">'
+                                 + data.FullName + '</option>');
+                            });
+                        },
+                        error: function (ex) {
+                            alert('Failed to retrieve departments.' + ex);
+                        }
+                    });
+                    return false;
+                })
+            });
+    </script>
+
+    
+    
+}

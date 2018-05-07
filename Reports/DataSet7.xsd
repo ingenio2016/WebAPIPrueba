@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet7" targetNamespace="http://tempuri.org/DataSet7.xsd" xmlns:mstns="http://tempuri.org/DataSet7.xsd" xmlns="http://tempuri.org/DataSet7.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VotersTableAdapter" GeneratorDataComponentClassName="VotersTableAdapter" Name="Voters" UserDataComponentName="VotersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Voters.UserName, Voters.FirstName, Voters.LastName, Voters.[Document], Voters.Phone, Voters.Address, Voters.CommuneId, Voters.Barrio, Voters.DateBorn, Voters.Profesion, Voters.VotingPlaceId, Voters.VoterId, Voters.userId,
+                         Refers.ReferId, Refers.FullName AS referido
+FROM            Voters INNER JOIN
+                         Refers ON Voters.ReferId = Refers.ReferId</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="CommuneId" DataSetColumn="CommuneId" />
+              <Mapping SourceColumn="Barrio" DataSetColumn="Barrio" />
+              <Mapping SourceColumn="DateBorn" DataSetColumn="DateBorn" />
+              <Mapping SourceColumn="Profesion" DataSetColumn="Profesion" />
+              <Mapping SourceColumn="VotingPlaceId" DataSetColumn="VotingPlaceId" />
+              <Mapping SourceColumn="VoterId" DataSetColumn="VoterId" />
+              <Mapping SourceColumn="Document" DataSetColumn="Document1" />
+              <Mapping SourceColumn="ReferId" DataSetColumn="ReferId" />
+              <Mapping SourceColumn="referido" DataSetColumn="referido" />
+              <Mapping SourceColumn="userId" DataSetColumn="userId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet7" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet7" msprop:Generator_UserDSName="DataSet7">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Voters" msprop:Generator_TableClassName="VotersDataTable" msprop:Generator_TableVarName="tableVoters" msprop:Generator_TablePropName="Voters" msprop:Generator_RowDeletingName="VotersRowDeleting" msprop:Generator_RowChangingName="VotersRowChanging" msprop:Generator_RowEvHandlerName="VotersRowChangeEventHandler" msprop:Generator_RowDeletedName="VotersRowDeleted" msprop:Generator_UserTableName="Voters" msprop:Generator_RowChangedName="VotersRowChanged" msprop:Generator_RowEvArgName="VotersRowChangeEvent" msprop:Generator_RowClassName="VotersRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Document" msprop:Generator_ColumnVarNameInTable="columnDocument" msprop:Generator_ColumnPropNameInRow="Document" msprop:Generator_ColumnPropNameInTable="DocumentColumn" msprop:Generator_UserColumnName="Document">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" msprop:Generator_UserColumnName="Phone" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CommuneId" msprop:Generator_ColumnVarNameInTable="columnCommuneId" msprop:Generator_ColumnPropNameInRow="CommuneId" msprop:Generator_ColumnPropNameInTable="CommuneIdColumn" msprop:Generator_UserColumnName="CommuneId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Barrio" msprop:Generator_ColumnVarNameInTable="columnBarrio" msprop:Generator_ColumnPropNameInRow="Barrio" msprop:Generator_ColumnPropNameInTable="BarrioColumn" msprop:Generator_UserColumnName="Barrio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateBorn" msprop:Generator_ColumnVarNameInTable="columnDateBorn" msprop:Generator_ColumnPropNameInRow="DateBorn" msprop:Generator_ColumnPropNameInTable="DateBornColumn" msprop:Generator_UserColumnName="DateBorn" type="xs:dateTime" />
+              <xs:element name="Profesion" msprop:Generator_ColumnVarNameInTable="columnProfesion" msprop:Generator_ColumnPropNameInRow="Profesion" msprop:Generator_ColumnPropNameInTable="ProfesionColumn" msprop:Generator_UserColumnName="Profesion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VotingPlaceId" msprop:Generator_ColumnVarNameInTable="columnVotingPlaceId" msprop:Generator_ColumnPropNameInRow="VotingPlaceId" msprop:Generator_ColumnPropNameInTable="VotingPlaceIdColumn" msprop:Generator_UserColumnName="VotingPlaceId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VoterId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnVoterId" msprop:Generator_ColumnPropNameInRow="VoterId" msprop:Generator_ColumnPropNameInTable="VoterIdColumn" msprop:Generator_UserColumnName="VoterId" type="xs:int" />
+              <xs:element name="Document1" msdata:Caption="Document" msprop:Generator_ColumnVarNameInTable="columnDocument1" msprop:Generator_ColumnPropNameInRow="Document1" msprop:Generator_ColumnPropNameInTable="Document1Column" msprop:Generator_UserColumnName="Document1" type="xs:double" />
+              <xs:element name="ReferId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnReferId" msprop:Generator_ColumnPropNameInRow="ReferId" msprop:Generator_ColumnPropNameInTable="ReferIdColumn" msprop:Generator_UserColumnName="ReferId" type="xs:int" />
+              <xs:element name="referido" msprop:Generator_ColumnVarNameInTable="columnreferido" msprop:Generator_ColumnPropNameInRow="referido" msprop:Generator_ColumnPropNameInTable="referidoColumn" msprop:Generator_UserColumnName="referido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="userId" msprop:Generator_ColumnVarNameInTable="columnuserId" msprop:Generator_ColumnPropNameInRow="userId" msprop:Generator_ColumnPropNameInTable="userIdColumn" msprop:Generator_UserColumnName="userId" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Voters" />
+      <xs:field xpath="mstns:VoterId" />
+      <xs:field xpath="mstns:ReferId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

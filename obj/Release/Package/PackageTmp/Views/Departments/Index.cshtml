@@ -1,0 +1,49 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.Department>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Departamentos";
+}
+
+<h2>Administración de Departamentos</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Departamento", "Create", new { }, new { @class = "btn btn-primary"})
+</p>
+<div class="table-responsive">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Country.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.DepartmentId }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.DepartmentId }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.DepartmentId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))
+</div>

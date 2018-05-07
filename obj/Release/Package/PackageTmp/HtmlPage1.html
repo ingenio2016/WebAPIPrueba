@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div clas="row">
+        <div class="col-md-12">
+            <div class="portlet box blue ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-plus"></i> <?php echo __('Crear nueva campaña')?>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tab">
+                                <button id="emailCampainButton" class="tablinks btn btn-red" onclick="changeCampainType(event, 'email')">Correo Electrónico</button>
+                                <button class="tablinks btn btn-red" onclick="changeCampainType(event, 'sms')">SMS</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="email" class="tabcontent">
+                                <div class="form-group">
+                                    <?php echo $this->Form->create('emailUploadForm',array('class'=>'form-horizontal','role'=>'form', 'type'=>'file'))?>
+                                    <div class="portlet box">
+                                        <div class="portlet-title">
+                                            <div style="color:black" class="caption">
+                                                <p>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Cargar Lista Externa</label>
+                                                        <div class="col-md-8">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="input-group input-large">
+                                                                    <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp; <span style="max-width: 120px" class="fileinput-filename">
+                                                                        </span>
+                                                                    </div>
+                                                                    <span class="input-group-addon btn default btn-file">
+                                                                        <span class="fileinput-new">
+                                                                            <?php echo __('Seleccionar archivo')?>
+                                                                        </span>
+                                                                        <span class="fileinput-exists">
+                                                                            <?php echo __('Cambiar')?>
+                                                                        </span>
+                                                                        <?php echo $this->Form->input('load_external_emails',array('div'=>false,'label'=>false,'type'=>'file'))?>
+                                                                    </span>
+                                                                    <a href="#" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
+                                                                        <?php echo __('Remover')?>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </p>
+                                            </div>
+                                            <div class="actions">
+                                                <?php echo $this->Html->Link('<i class="fa fa-download"></i>'.__('Descargar Formato'), '/files/ListadoEmailsFormato.xlsx', array('class'=>'btn default'))?>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button id="btn_loadEmail" class="btn red" type="submit"><?php echo __('Enviar')?></button>
+                                                    <?php echo $this->Html->link(__('Cancelar'),'/categories',array('class'=>'btn default'))?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php echo $this->Form->end()?>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <?php echo $this->Form->create('Client',array('class'=>'form-horizontal','role'=>'form'))?>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"><?php echo __('Grupos de Cliente: ')?></label>
+                                        <div class="col-md-10">
+                                            <div id="categories-groups" class="clearfix">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"><?php echo __('Asunto: ')?></label>
+                                        <div class="col-md-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                <?php echo $this->Form->input('subjectEmail',array('div'=>false,'label'=>false,'placeholder'=>'','class'=>'form-control'))?>
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"><?php echo __('Mensaje: ')?></label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <?php echo $this->Form->end()?>
+                                </div>
+                            </div>
+                            <div id="sms" class="tabcontent">
+                                <h3>SMS</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

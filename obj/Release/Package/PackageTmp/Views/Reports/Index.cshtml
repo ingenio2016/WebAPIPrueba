@@ -1,0 +1,178 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.Boss>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Listados de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administración de Usuarios</h2>
+<div>
+@using (Html.BeginForm())
+{
+    <p>
+        <h3>Filtrar por:</h3>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Rol Político</label>
+                    @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Filtrar por</label>
+                    @Html.DropDownList("FilterId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Lugar de Votación</label>
+                    @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label style="visibility:hidden" class="control-label">Buscar</label><br />
+                    <input type="submit" value="Buscar" class="btn btn-danger" />
+                </div>
+            </div>
+                 
+        </div>
+    </p>
+    <hr />
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FullName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Document)
+            </th>
+
+            @*<th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().DateBorn)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Barrio)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Commune)
+            </th>*@
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Phone)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            </th>
+            
+            @*<th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Profesion)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Especialidad)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().TiempoExperiencia)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().WorkPlace)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Associacion)
+            </th>*@
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().VotingPlaceId)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Document)
+                </td>
+
+                @*<td>
+                    @item.DateBorn.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barrio)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommuneId)
+                </td>*@
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Profesion)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TiempoExperiencia)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkPlace)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Associacion)
+                </td>*@
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.VotingPlace.Name)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+        ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))
+
+    <p>
+       <a class="btn btn-success" target="_blank" href='@Url.Action("BossesReport", "Reports")'><span class="glyphicon glyphicon-print"></span>Obtener Listado</a>
+    </p>
+</div>
+}
+</div>

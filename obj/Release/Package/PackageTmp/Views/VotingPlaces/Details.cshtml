@@ -1,0 +1,47 @@
+﻿@model WebAPIPrueba.Models.VotingPlace
+
+@{
+    ViewBag.Title = "Puestos de Votación";
+}
+
+<h2>Administración de Puestos de Votación</h2>
+
+<div>
+    <h4>Detalles del Puesto de Votación</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.VotingPlaceId }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success" })
+</p>

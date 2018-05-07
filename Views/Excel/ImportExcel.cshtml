@@ -1,0 +1,212 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Importar listado de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var errores = ViewBag.Message1;
+}
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="stylesheet" />
+
+
+<!--[if !IE]><!-->
+<style type="text/css">
+    /* Generic Styling, for Desktops/Laptops */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+            /*
+     Label the data
+     */
+            td:before {
+                content: attr(data-title);
+            }
+    }
+</style>
+
+<!--<![endif]-->
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h2 style="color:#000099">Subir Listados de Usuarios</h2>
+        <div class="col-sm-6">
+            @using (Html.BeginForm("ImportExcel", "Excel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Usuario</label>
+                            @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Referído</label>
+                            <input type="text" class="form-control" id="Document" name="Document" value="" placeholder="Digite el Nombre del Referído" />
+                            <input type="hidden" id="hfCustomer" name="ReferId" />
+                        </div>
+                        <div class="col-md-12">
+                            <input type="file" id="FileUpload1" name="FileUpload1" /><br />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                                    @if (ViewBag.Error != null)
+                {
+                                        <p style="color:darkgreen">@ViewBag.Error</p>
+                                    }
+                                    @if (ViewBag.Message != null)
+                {
+                                        <p style="color:darkgreen">@ViewBag.Message</p>
+                                    }
+                                    
+                                    <br />
+                                    <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="Submit" name="Submit" value="Cargar Archivo" />
+                        </div>
+                        
+                    </div>
+
+                    <br />
+
+                </div>
+            }
+        </div>
+        <div class="col-sm-6">
+            
+            @if (errores != null)
+            {               
+                    <table class="table table-striped">
+                        <tr>
+                            <td colspan="3">
+                                <h4>Se han encontrado las siguientes inconsistencias</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Documento</td>
+                            <td>Descripción de la Inconsistencia</td>
+                        </tr>
+                        @foreach (var item in errores)
+                        {
+                            <tr>
+                                <td>@item.document</td>
+                                <td>@item.mistakeDescription</td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <img class="img img-rounded" src="~/Fotos/Upload.png" style="height:280px;width:auto" />
+                }
+           
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var userId = 0;
+                $("#userId").change(function () {
+                    userId = $("#userId").val();
+                    console.log(userId);
+                })
+
+                $("#Document").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '/Home/BuscarUsuario/',
+                            data: "{ 'prefix': '" + request.term + "', 'userId': '" + userId + "'}",
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return item;
+                                }))
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    },
+                    select: function (e, i) {
+                        $("#hfCustomer").val(i.item.val);
+                    },
+                    minLength: 1
+                });
+                
+            });
+    </script>
+
+
+
+
+}
+

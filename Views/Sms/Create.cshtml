@@ -1,0 +1,145 @@
+﻿@model WebAPIPrueba.Models.Sms
+
+@{
+    ViewBag.Title = "Crear SMS";
+}
+
+<h2>Módulo de envío masivo de SMS</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Nuevo Mensaje</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label class="control-label">Tipo de Usuario</label>
+                        @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label class="control-label">Usuario</label>
+                        @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+        </p>
+        <p>
+           <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label class="control-label">Comunas</label>
+                            @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label class="control-label">Lugar de Votación</label>
+                            @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                        </div>
+                    </div>
+
+                </div>
+        </p>
+        <p>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <input style="background-color:#000099;border-radius:25px" type="button" value="Buscar" class="btn btn-info btn-md" id="searchContacts" />
+                    </div>
+                </div>
+
+            </div>
+        </p>
+
+        <br /><hr />
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+                <textarea class="form-control" name="Message" id="Message"></textarea>
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })<br />
+                <div id="character_count"></div>
+                <div id="messages_count"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input style="background-color:#000099;border-radius:25px" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+            </div>
+        </div>
+    </div>
+
+    <script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/JHomeIndex.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+                $("#userId").change(function () {
+                    $("#ReferId").empty();
+                    $("#ReferId").append('<option value="0">[Seleccione un Usuario]</option>');
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetPerfil")',
+                        dataType: 'json',
+                        data: { userId: $("#userId").val() },
+                        success: function (data) {
+                            $.each(data, function (i, data) {
+                                $("#ReferId").append('<option value="'
+                                 + data.ReferId + '">'
+                                 + data.FullName + '</option>');
+                            });
+                        },
+                        error: function (ex) {
+                            alert('No se encontraron usuarios' + ex);
+                        }
+                    });
+                    return false;
+                })
+            });
+    </script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $("#searchContacts").click(function () {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Consultando Votantes ...'
+                    });
+                    var data = {
+                        user: $("#userId option:selected").val(),
+                        refer: $("#ReferId option:selected").val(),
+                        comuna: $("#Comuna option:selected").val(),
+                        votacion: $("#VotingPlaceId option:selected").text()
+                    };
+                    console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("SearchVoters")',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            $('body').loading('stop');
+                            console.log(data);
+                            $("#To").val(data.length + " contactos cargados");
+                        },
+                        error: function (ex) {
+                            $('body').loading('stop');
+                        }
+                    });
+                    return false;
+                })
+            });
+    </script>
+}

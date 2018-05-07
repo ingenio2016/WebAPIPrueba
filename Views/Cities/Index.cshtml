@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.City>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Municipios";
+}
+
+<h2 style="color:#000099">Administración de Municipios</h2>
+
+<p>
+    @Html.ActionLink("Nueva Ciudad", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CountryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DepartmentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.CityId }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.CityId }, new { @class = "btn btn-info btn-sm" }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.CityId }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))
+</div>

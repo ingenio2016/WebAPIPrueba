@@ -1,0 +1,74 @@
+﻿@model WebAPIPrueba.Models.Dates
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dates</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfessionalId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfessionalId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HourId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HourId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SystemDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SystemDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asistencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asistencia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DateId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

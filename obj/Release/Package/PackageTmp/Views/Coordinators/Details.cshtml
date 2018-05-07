@@ -1,0 +1,224 @@
+﻿@model WebAPIPrueba.Models.Coordinator
+
+@{
+    ViewBag.Title = "Coordinadores";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    var workPlace = db.WorkPlaces.Find(Model.WorkPlaceId);
+    
+}
+<style>
+    /*DL, DT, DD TAGS LIST DATA*/
+    dl {
+        margin-bottom: 50px;
+    }
+
+        dl dt {
+            background: #4083d3;
+            color: #fff;
+            float: left;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        dl dd {
+            background: #ffffff;
+            margin: 2px 0;
+            padding: 5px;
+            color: #000;
+        }
+</style>
+<h2 style="color:#000099">Administración de Coordinadores</h2>
+<h3>Detalles del Coordinador</h3>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <br />
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                <img class="img-rounded" src="@Url.Content(Model.Photo)" alt="Image" style="width:auto;height:280px;margin:0 auto" />
+            }
+            else
+            {
+                <img class="img-rounded" src="~/Content/Bosses/Photo.png" alt="Image" style="width:auto;height:280px;margin:0 auto" />
+            }
+
+            <h2 style="font-family:'HelveticaPro';color:#000099;font-size:40px">@Model.FullName</h2>
+        </div>
+        <div class="col-sm-6">
+            <dl class="dl-horizontal">
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.FirstName):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.LastName):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Document):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Document)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.DateBorn):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Model.DateBorn.ToString("dd/MM/yyyy")
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.CountryId):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Country.Name)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.DepartmentId):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Department.Name)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.City.Name):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.City.Name)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Address):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Barrio):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Barrio)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.UserName):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Phone):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.CommuneId):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Commune.Name)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Associacion):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Associacion)
+                </dd>
+
+                
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Profesion):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Profesion)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Especialidad):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Especialidad)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.TiempoExperiencia):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Model.TiempoExperiencia años
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.WorkPlaceId):
+                </dt>
+
+                <dd style="text-align:left">
+                    @if (workPlace != null)
+                    {
+                        <p>@workPlace.Name</p>
+                    }
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.VotingPlaceId):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.VotingPlace.Name)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Observation):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Html.DisplayFor(model => model.Observation)
+                </dd>
+
+                <dt style="text-align:left">
+                    @Html.DisplayNameFor(model => model.Date):
+                </dt>
+
+                <dd style="text-align:left">
+                    @Model.Date.ToString("dd/MM/yyyy")
+                </dd>
+
+            </dl>
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.CoordinatorId }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" }) |
+                @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+            </p>
+        </div>
+    </div>
+</div>
+

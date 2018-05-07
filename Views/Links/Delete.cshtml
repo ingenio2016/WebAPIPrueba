@@ -1,0 +1,242 @@
+﻿@model WebAPIPrueba.Models.Link
+
+@{
+    ViewBag.Title = "Enlaces";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    var workPlace = db.WorkPlaces.Find(Model.WorkPlaceId);
+}
+<style>
+    /*DL, DT, DD TAGS LIST DATA*/
+    dl {
+        margin-bottom: 50px;
+    }
+
+        dl dt {
+            background: #4083d3;
+            color: #fff;
+            float: left;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        dl dd {
+            background: #ffffff;
+            margin: 2px 0;
+            padding: 5px;
+            color: #000;
+        }
+</style>
+<h2 style="color:#000099">Administración de Enlaces</h2>
+<h3>Borrar Registro</h3>
+
+<div>
+    <h3>¡Está seguro que desea borrar este Enlace?</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBorn)
+        </dt>
+
+        <dd>
+            @Model.DateBorn.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Barrio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barrio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommuneId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commune.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asociacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asociacion)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BossId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Boss.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiempoExperiencia)
+        </dt>
+
+        <dd>
+            @Model.TiempoExperiencia años
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkPlaceId)
+        </dt>
+
+        <dd>
+            @if (workPlace != null)
+            {
+                <p>@workPlace.Name</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VotingPlaceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VotingPlace.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zonaEncargada):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zonaEncargada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Model.Date.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                <img class="img-rounded" src="@Url.Content(Model.Photo)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+            }
+            else
+            {
+                <img class="img-rounded" src="~/Content/Bosses/Photo.jpg" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="background-color:#000099;border-radius:25px" type="submit" value="Borrar" class="btn btn-primary btn-sm" /> |
+            @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+        </div>
+    }
+</div>

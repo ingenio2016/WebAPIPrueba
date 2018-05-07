@@ -1,0 +1,35 @@
+﻿@model WebAPIPrueba.Models.Coordinator
+
+@{
+    ViewBag.Title = "Cargar Hoja de Vida";
+}
+
+<h2>Cargar Hoja de Vida a @Model.FullName</h2>
+
+
+@using (Html.BeginForm("CargarHojaVida", "Coordinators", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.CoordinatorId)
+        @Html.HiddenFor(model => model.CompanyId)
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label">Adjunto</label>
+                <span class="btn btn-default btn-file">
+                    <input type="file" name="File" />
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Cargar" class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" />
+                @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334" })
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,40 @@
+﻿@model WebAPIPrueba.Models.City
+
+@{
+    ViewBag.Title = "Municipios";
+}
+
+<h2 style="color:#000099">Administración de Municipios</h2>
+<h3>Información del Municipio</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CityId }, new { @class = "btn btn-primary btn-sm", @style = "background-color:#000099" }) |
+    @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334" })
+</p>

@@ -1,0 +1,188 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.Coordinator>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Coordinadores";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    var list = db.Coordinators.ToList();
+}
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+        $(function () {
+            $("#Document").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Home/BuscarCoordinador/',
+                        data: "{ 'prefix': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#hfCustomer").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+</script>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2 style="color:#000099">Administración de Coordinadores</h2>
+    </div>
+    <div class="col-sm-6">
+        <p style="text-align:right">
+            <br />
+            @Html.ActionLink("Nuevo Coordinador", "Create", new { }, new { @class = "btn btn-primary btn-md", @style = "background-color:#000099;border-radius:25px" })
+        </p>
+    </div>
+</div>
+@if (!User.IsInRole("Digitador"))
+{
+<p>
+    @using (Html.BeginForm("Index", "Coordinators"))
+    {
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Filtrar por</label>
+                    @Html.DropDownList("FilterId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Comunas</label>
+                    @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Lugar de Votación</label>
+                    @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label">Lugar de Trabajo</label>
+                    @Html.DropDownList("WorkPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label class="control-label"><i style="color:#000099" class="fa fa-play" aria-hidden="true"></i>Nombre o Documento de identidad</label>
+                    <input style="border-radius:25px" type="text" class="form-control" id="Document" name="Document" value="" />
+                    <input type="hidden" id="hfCustomer" name="CustomerId" /><br />
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label style="visibility:hidden" class="control-label">Buscar</label><br />
+                    <input style="background-color:#000099;border-radius:25px" type="submit" value="Buscar" class="btn btn-info btn-md" />
+                </div>
+            </div>
+
+        </div>
+    }
+</p>
+<hr />
+<h3>Total Coordinadores: @list.Count</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FullName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Phone)
+            </th>
+
+            <th>
+                Hoja de Vida
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Observation)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var hv = db.HojaVidas.Where(h => h.RolId == 3 && h.UserId == item.CoordinatorId).FirstOrDefault();
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+
+                <td>
+                    @if (hv != null)
+                    {
+                        <a class="btn btn-link" href="@Url.Content(hv.Path)" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> Descargar</a>
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observation)
+                </td>
+
+                <td>
+                    <div class="dropdown">
+                        <a href="#" style="background-color:#000099" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Opciones<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><p><i class="fa fa-pencil-square-o" aria-hidden="true"></i>@Html.ActionLink(" Editar", "Edit", new { id = item.CoordinatorId }, new { @style = "color:black" })</p></li>
+                            <li><p><i class="fa fa-list-alt" k4aria-hidden="true"></i>@Html.ActionLink(" Detalles", "Details", new { id = item.CoordinatorId }, new { @style = "color:black" })</p></li>
+                            <li><p><i class="fa fa-trash-o" aria-hidden="true"></i>@Html.ActionLink(" Borrar", "Delete", new { id = item.CoordinatorId }, new { @style = "color:black" })</p></li>
+                            <li><p><i class="fa fa-cloud-upload" aria-hidden="true"></i>@Html.ActionLink(" Cargar HV", "CargarHojaVida", new { id = item.CoordinatorId }, new { @style = "color:black" })</p></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+        ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter,
+    FilterId = ViewBag.uno,
+    Comuna = ViewBag.dos,
+    VotingPlaceId = ViewBag.tres
+}))
+
+    <p>
+        @if (User.IsInRole("User") || User.IsInRole("Secretario"))
+    {
+        using (Html.BeginForm("Index", "Coordinators"))
+        {
+            <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("CoorReport", "Coordinators", new { filtro = ViewBag.uno, communa = ViewBag.dos, votacion = ViewBag.tres, work = ViewBag.cuatro, type = 1 })'><span class="glyphicon glyphicon-print"></span>Descargar Excel</a>
+            <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("CoorReport", "Coordinators", new { filtro = ViewBag.uno, communa = ViewBag.dos, votacion = ViewBag.tres, work = ViewBag.cuatro, type = 2 })'><span class="glyphicon glyphicon-print"></span>Descargar PDF</a>
+
+    }
+}
+    </p>
+</div>
+}

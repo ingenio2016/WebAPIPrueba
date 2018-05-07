@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.VotingPlace>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Puestos de Votación";
+}
+
+<h2>Administración de Puestos de Votación</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Puesto de Votación", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Country.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Department.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().City.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.VotingPlaceId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.VotingPlaceId }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.VotingPlaceId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))
+</div>
+

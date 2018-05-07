@@ -1,0 +1,1715 @@
+﻿@model WebAPIPrueba.Models.Dates
+
+@{
+    ViewBag.Title = "Módulo de Reuniones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Convert.ToInt32(ViewBag.Id);
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    WebAPIPrueba.Models.TimesDates timesdate = db.TimesDates.Find(id);
+    Model.EventDate = DateTime.Now;
+}
+
+
+<h2>Asignar nueva Reunión</h2>
+
+
+@using (Html.BeginForm("Create", "Dates", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SystemDate)
+        @Html.HiddenFor(model => model.ProfessionalId)
+
+        <div class="form-group">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.EventDate, "Fecha Reunión", htmlAttributes: new { @class = "control-label" })
+                <div class='input-group date' id='datepicker' style="width:280px">
+                    <input type="text" name="EventDate" id="EventDate" value="@ViewData["Fecha"]" class="form-control" onblur="Change()" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.ProfessionalId, "Solicitada por", htmlAttributes: new { @class = "control-label" })
+                <input type="text" class="form-control" name="ProfessionalId" value="@Model.ProfessionalId" />                
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">Teléfono</label>
+                <input type="text" class="form-control" name="Phone" value="@Model.Phone" />
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Hour, "Hora de la Reunión", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("Hour", ViewData["Hours"] as List<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HourId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Observation, "Motivo de la Reunión", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Observation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observation, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">Lugar de la Reunión</label><br />
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Direccion exacta del Lugar" } })
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">Cantidad de Asistentes</label><br />
+                @Html.EditorFor(model => model.PersonsNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PersonsNumber, "", new { @class = "text-danger" })<br />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">Moderador</label><br />
+                @Html.EditorFor(model => model.Moderator, new { htmlAttributes = new { @class = "form-control", @placeholder = "Este campo puede ser editado luego" } })
+                @Html.ValidationMessageFor(model => model.Moderator, "", new { @class = "text-danger" })<br />
+                
+            </div>
+            <div class="col-md-4">
+                <br />
+                <input type="submit" value="Crear Reunion" class="btn btn-primary btn-sm" style="border-radius:25px; background-color:#000099;" />
+                @Html.ActionLink("Volver", "Create", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+            </div>
+        </div>
+        <hr />
+        
+        <div class="form-group">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:00 AM</label>
+                    </div>
+                    @if (timesdate.seis00 == 0)
+                    {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seis00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:15 AM</label>
+                    </div>
+                    @if (timesdate.seis15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seis15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:30 AM</label>
+                    </div>
+                    @if (timesdate.seis30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seis30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:45 AM</label>
+                    </div>
+                    @if (timesdate.seis45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seis45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:00 AM</label>
+                    </div>
+                    @if (timesdate.siete00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.siete00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:15 AM</label>
+                    </div>
+                    @if (timesdate.siete15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.siete15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:30 AM</label>
+                    </div>
+                    @if (timesdate.siete30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.siete30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:45 AM</label>
+                    </div>
+                    @if (timesdate.siete45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.siete45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:00 AM</label>
+                    </div>
+                    @if (timesdate.ocho00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ocho00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:15 AM</label>
+                    </div>
+                    @if (timesdate.ocho15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ocho15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:30 AM</label>
+                    </div>
+                    @if (timesdate.ocho30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ocho30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:45 AM</label>
+                    </div>
+                    @if (timesdate.ocho45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ocho45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:00 AM</label>
+                    </div>
+                    @if (timesdate.nueve00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nueve00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:15 AM</label>
+                    </div>
+                    @if (timesdate.nueve15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nueve15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:30 AM</label>
+                    </div>
+                    @if (timesdate.nueve30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nueve30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:45 AM</label>
+                    </div>
+                    @if (timesdate.nueve45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nueve45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>10:00 AM</label>
+                    </div>
+                    @if (timesdate.diez00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.diez00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>10:15 AM</label>
+                    </div>
+                    @if (timesdate.diez15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.diez15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>10:30 AM</label>
+                    </div>
+                    @if (timesdate.diez30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.diez30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>10:45 AM</label>
+                    </div>
+                    @if (timesdate.diez45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.diez45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>11:00 AM</label>
+                    </div>
+                    @if (timesdate.once00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.once00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>11:15 AM</label>
+                    </div>
+                    @if (timesdate.once15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.once15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>11:30 AM</label>
+                    </div>
+                    @if (timesdate.once30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.once30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>11:45 AM</label>
+                    </div>
+                    @if (timesdate.once45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.once45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>12:00 PM</label>
+                    </div>
+                    @if (timesdate.doce00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.doce00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>12:15 PM</label>
+                    </div>
+                    @if (timesdate.doce15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.doce15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>12:30 PM</label>
+                    </div>
+                    @if (timesdate.doce30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.doce30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>12:45 PM</label>
+                    </div>
+                    @if (timesdate.doce45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.doce45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>01:00 PM</label>
+                    </div>
+                    @if (timesdate.uno00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.uno00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>01:15 PM</label>
+                    </div>
+                    @if (timesdate.uno15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.uno15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>01:30 PM</label>
+                    </div>
+                    @if (timesdate.uno30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.uno30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>01:45 PM</label>
+                    </div>
+                    @if (timesdate.uno45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.uno45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>02:00 PM</label>
+                    </div>
+                    @if (timesdate.dos00 == 0)
+                    {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.dos00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>02:15 PM</label>
+                    </div>
+                    @if (timesdate.dos15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.dos15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>02:30 PM</label>
+                    </div>
+                    @if (timesdate.dos30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.dos30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>02:45 PM</label>
+                    </div>
+                    @if (timesdate.dos45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.dos45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>03:00 PM</label>
+                    </div>
+                    @if (timesdate.tres00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.tres00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>03:15 PM</label>
+                    </div>
+                    @if (timesdate.tres15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.tres15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>03:30 PM</label>
+                    </div>
+                    @if (timesdate.tres30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.tres30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>03:45 PM</label>
+                    </div>
+                    @if (timesdate.tres45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.tres45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>04:00 PM</label>
+                    </div>
+                    @if (timesdate.cuatro00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cuatro00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>04:15 PM</label>
+                    </div>
+                    @if (timesdate.cuatro15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cuatro15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>04:30 PM</label>
+                    </div>
+                    @if (timesdate.cuatro30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cuatro30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>04:45 PM</label>
+                    </div>
+                    @if (timesdate.cuatro45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cuatro45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>05:00 PM</label>
+                    </div>
+                    @if (timesdate.cinco00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cinco00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>05:15 PM</label>
+                    </div>
+                    @if (timesdate.cinco15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cinco15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>05:30 PM</label>
+                    </div>
+                    @if (timesdate.cinco30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cinco30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>05:45 PM</label>
+                    </div>
+                    @if (timesdate.cinco45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.cinco45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:00 PM</label>
+                    </div>
+                    @if (timesdate.seisp00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seisp00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:15 PM</label>
+                    </div>
+                    @if (timesdate.seisp15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seisp15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:30 PM</label>
+                    </div>
+                    @if (timesdate.seisp30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seisp30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>06:45 PM</label>
+                    </div>
+                    @if (timesdate.seisp45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.seisp45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:00 PM</label>
+                    </div>
+                    @if (timesdate.sietep00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.sietep00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:15 PM</label>
+                    </div>
+                    @if (timesdate.sietep15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.sietep15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:30 PM</label>
+                    </div>
+                    @if (timesdate.sietep30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.sietep30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>07:45 PM</label>
+                    </div>
+                    @if (timesdate.sietp45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.sietp45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:00 PM</label>
+                    </div>
+                    @if (timesdate.ochop00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ochop00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:15 PM</label>
+                    </div>
+                    @if (timesdate.ochop15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ochop15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:30 PM</label>
+                    </div>
+                    @if (timesdate.ochop30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ochop30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>08:45 PM</label>
+                    </div>
+                    @if (timesdate.ochop45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.ochop45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:00 PM</label>
+                    </div>
+                    @if (timesdate.nuevep00 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nuevep00);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:15 PM</label>
+                    </div>
+                    @if (timesdate.nuevep15 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nuevep15);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:30 PM</label>
+                    </div>
+                    @if (timesdate.nuevep30 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nuevep30);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label>09:45 PM</label>
+                    </div>
+                    @if (timesdate.nuevep45 == 0)
+                {
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <input style="background-color:#000099;color:white" type="text" value="" class="form-control" readonly />
+                        </div>
+                    }
+                    else
+                    {
+                        var date = db.Dates.Find(timesdate.nuevep45);
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <input style="background-color:#333334;color:white" type="text" value="@date.Observation" class="form-control" readonly />
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <a class="btn btn-default" href='@Url.Action("DateDelete", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-remove"></span></a>
+                            @if (date.Asistencia == false)
+                            {
+                                <a class="btn btn-default" href='@Url.Action("Check", "Dates", new { DateId = date.DateId })'><span class="glyphicon glyphicon-check"></span></a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker').datetimepicker({ format: 'YYYY/MM/DD' });
+        });
+</script>
+}
+
+

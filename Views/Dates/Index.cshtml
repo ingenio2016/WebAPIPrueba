@@ -1,0 +1,177 @@
+﻿@model PagedList.IPagedList<WebAPIPrueba.Models.Dates>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Modulo de Reuniones";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2 style="color:#000099">Administración de Reuniones</h2>
+    </div>
+    <div class="col-sm-6">
+        <p style="text-align:right">
+            <br />
+            @Html.ActionLink("Crear nueva Reunión", "Create", new { }, new { @class = "btn btn-primary btn-md", @style = "background-color:#000099;border-radius:25px" })
+        </p>
+    </div>
+</div>
+<p>
+    @using (Html.BeginForm("Index", "Dates"))
+    {
+        <h3>Filtrar por fecha:</h3>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label class="control-label">Fecha inicial</label>
+                    <div class='input-group date' id='datepicker1' style="width:280px">
+                        <input type="text" name="fechaini" class="form-control" style="background-color:#f5f5f5" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label class="control-label">Fecha Final</label>
+                    <div class='input-group date' id='datepicker2' style="width:280px">
+                        <input type="text" name="fechafin" class="form-control" style="background-color:#f5f5f5" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label style="visibility:hidden" class="control-label">Buscar</label><br />
+                    <input style="background-color:#000099;border-radius:25px" type="submit" value="Buscar" class="btn btn-info btn-md" />
+                </div>
+
+            </div>
+
+        </div>
+    }
+</p>
+<hr />
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th class="text-center">
+                Organizador
+            </th>
+            <th class="text-center">
+                Teléfono
+            </th>
+            <th class="text-center">
+                Fecha
+            </th>
+            <th class="text-center">
+                Hora
+            </th>
+            <th class="text-center">
+                Motivo Reunión
+            </th>
+            <th class="text-center">
+                Lugar
+            </th>
+            <th class="text-center">
+                Asistentes
+            </th>
+            <th class="text-center">
+                Moderador
+            </th>
+            <th class="text-center">
+                ¿Se realizo?
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var fecha = Convert.ToDateTime(item.EventDate);
+            string organizadorNombre = string.Empty;
+            var boss = db.Bosses.Where(b => b.Document == item.ProfessionalId).FirstOrDefault();
+            if (boss != null)
+            {
+                organizadorNombre = boss.FullName;
+            }
+            else
+            {
+                var enlace = db.Links.Where(b => b.Document == item.ProfessionalId).FirstOrDefault();
+                if (enlace != null)
+                {
+                    organizadorNombre = enlace.FullName;
+                }
+                else
+                {
+                    var coordinador = db.Coordinators.Where(b => b.Document == item.ProfessionalId).FirstOrDefault();
+                    if (coordinador != null)
+                    {
+                        organizadorNombre = coordinador.FullName;
+                    }
+                    else
+                    {
+                        var lider = db.Leaders.Where(b => b.Document == item.ProfessionalId).FirstOrDefault();
+                        organizadorNombre = lider.FullName;
+                    }
+                }
+
+            }
+            <tr>
+                <td>
+                    @organizadorNombre
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @fecha.ToString("dd/MM/yyyy")
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Hour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.PersonsNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moderator)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.Asistencia)
+                </td>
+                <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.DateId }, new { @class = "btn btn-success btn-sm", @style = "background-color:#000099;border-radius:25px" })
+                </td>
+            </tr>
+        }
+
+    </table>
+        Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), De: @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+   {
+       page,
+       sortOrder =
+    ViewBag.CurrentSort,
+       currentFilter = ViewBag.CurrentFilter,
+       FilterId = ViewBag.uno,
+       Comuna = ViewBag.dos,
+       VotingPlaceId = ViewBag.tres,
+       @class = "btn btn-success btn-sm",
+       @style = "background-color:#000099;border-radius:25px"
+   }))
+
+    <p>
+        <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("DatesReport", "Dates", new { fechaini = ViewBag.uno, fechafin = ViewBag.dos})'><span class="glyphicon glyphicon-print"></span> Descargar Listado</a>
+    </p>
+    </div>
+    <script type="text/javascript">
+        var jq = $.noConflict();
+        jq(function () {
+            jq('#datepicker1').datetimepicker({ format: 'YYYY/MM/DD' });
+            jq('#datepicker2').datetimepicker({ format: 'YYYY/MM/DD' });
+        });
+    </script>

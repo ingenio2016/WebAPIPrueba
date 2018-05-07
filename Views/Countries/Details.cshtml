@@ -1,0 +1,26 @@
+﻿@model WebAPIPrueba.Models.Country
+
+@{
+    ViewBag.Title = "Paises";
+}
+
+<h2>Administración de Paises</h2>
+
+<div>
+    <h4>Detalles del país</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CountryId }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success" })
+</p>

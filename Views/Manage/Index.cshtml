@@ -1,0 +1,27 @@
+﻿@model WebAPIPrueba.Models.IndexViewModel
+@{
+    ViewBag.Title = "Administrar Cuenta";
+}
+
+<h2>Administrar la Cuenta</h2>
+
+<div>
+    <h4>Cambiar la configuración de la cuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Contraseña:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Cambiar la Contraseña", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+       
+    </dl>
+</div>

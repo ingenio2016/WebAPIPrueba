@@ -1,0 +1,921 @@
+﻿@model WebAPIPrueba.Models.Voter
+
+@{
+    ViewBag.Title = "Consulta de Datos";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    //Referido del Votante
+    var referido = db.Refers.Find(Model.ReferId);
+    var red = referido;
+}
+<style>
+    /*DL, DT, DD TAGS LIST DATA*/
+    dl {
+        margin-bottom: 50px;
+    }
+
+        dl dt {
+            background: #4083d3;
+            color: #fff;
+            float: left;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        dl dd {
+            background: #ffffff;
+            margin: 2px 0;
+            padding: 5px;
+            color: #000;
+        }
+</style>
+<div>
+    @if (Model == null)
+    {
+        <h3 style="color:#000099">No se encontraron registros, Por favor verifique</h3>
+        <p>
+            @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+        </p>
+    }
+    else
+    {
+        var contaenlaces = 0;
+        var contacoordinadores = 0;
+        var contalideres = 0;
+        var contavotantes = 1;
+
+        var Boss = db.Bosses.Where(b => b.Document == Model.Document).FirstOrDefault();
+        var Link = db.Links.Where(b => b.Document == Model.Document).FirstOrDefault();
+        var Coordinator = db.Coordinators.Where(b => b.Document == Model.Document).FirstOrDefault();
+        var Leader = db.Leaders.Where(b => b.Document == Model.Document).FirstOrDefault();
+        int cont1 = 0;
+        int cont2 = 0;
+        int cont3 = 0;
+        int cont4 = 0;
+        string path = string.Empty;
+        List<WebAPIPrueba.Models.Voter> Voter = new List<WebAPIPrueba.Models.Voter>();
+        ViewBag.perfil = "Votante";
+        if (Boss != null)//JEFE
+        {
+            var referboss = db.Refers.Where(r => r.ReferType == 1 && r.UserId == Boss.BossId).FirstOrDefault();
+            if (referboss != null)
+            {
+                cont1 = Boss.BossId;
+                //0 - Votantes del Jefe
+                Voter = db.Voters.Where(v => v.ReferId == referboss.ReferId).ToList();
+                ViewBag.asociacion = Boss.Associacion;
+                ViewBag.lugarTrabajo = Boss.WorkPlaceId;
+                ViewBag.perfil = "Jefe";
+                //1 - Enlaces del jefe
+                var linksToCount = db.Links.Where(l => l.BossId == Boss.BossId).ToList();
+                contaenlaces = linksToCount.Count;
+                //recorro los enlaces
+                foreach (var item in linksToCount)
+                {
+                    //BUSCO EL REFERIDO DE CADA ENLACE
+                    var referItem = db.Refers.Where(r => r.ReferType == 2 && r.UserId == item.LinkId).FirstOrDefault();
+                    if (referItem != null)
+                    {
+                        //2 - Coordinadores del enlace
+                        var linkCoorsCount = db.Coordinators.Where(c => c.ReferId == referItem.ReferId).ToList();
+                        foreach (var linkCoorItem in linkCoorsCount)
+                        {
+                            //BUSCO EL REFERIDO DE CADA COORDINADOR
+                            var linkCoorItemRefer = db.Refers.Where(r => r.ReferType == 3 && r.UserId == linkCoorItem.CoordinatorId).FirstOrDefault();
+                            if (linkCoorItemRefer != null)
+                            {
+                                //3 - Lideres del coordinador
+                                var linkCoorLeadersCount = db.Leaders.Where(c => c.ReferId == linkCoorItemRefer.ReferId).ToList();
+                                foreach (var linkCoorLeadersItem in linkCoorLeadersCount)
+                                {
+                                    //busco los referidos de cada lider
+                                    var linkCoorLeadersRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == linkCoorLeadersItem.LeaderId).FirstOrDefault();
+                                    if (linkCoorLeadersRefer != null)
+                                    {
+                                        //4 - votantes de cada lider
+                                        contavotantes += db.Voters.Where(v => v.ReferId == linkCoorLeadersRefer.ReferId).ToList().Count;
+                                    }
+                                }
+                                //votantes de cada coordinador
+                                contavotantes += db.Voters.Where(v => v.ReferId == linkCoorItemRefer.ReferId).ToList().Count;
+                            }
+                        }
+                        //lideres del enlace
+                        var linkLeadersCount = db.Leaders.Where(c => c.ReferId == referItem.ReferId).ToList();
+                        foreach (var linkLeaderItem in linkLeadersCount)
+                        {
+                            var linkLeaderRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == linkLeaderItem.LeaderId).FirstOrDefault();
+                            if (linkLeaderRefer != null)
+                            {
+                                //votantes del lider
+                                contavotantes += db.Voters.Where(v => v.ReferId == linkLeaderRefer.ReferId).ToList().Count;
+                            }
+                        }
+                        //votantes de cada enlace
+                        contavotantes += db.Voters.Where(v => v.ReferId == referItem.ReferId).ToList().Count;
+                    }
+                }
+                //coordinadores del jefe
+                var coorToCount = db.Coordinators.Where(l => l.ReferId == referboss.ReferId).ToList();
+                contacoordinadores = coorToCount.Count;
+                foreach (var item in coorToCount)
+                {
+                    var itemRefer = db.Refers.Where(r => r.ReferType == 3 && r.UserId == item.CoordinatorId).FirstOrDefault();
+                    if (itemRefer != null)
+                    {
+                        var coorLeadersCount = db.Leaders.Where(c => c.ReferId == itemRefer.ReferId).ToList();
+                        foreach (var coorLeader in coorLeadersCount)
+                        {
+                            //lideres de cada coordinador
+                            var coorLeaderRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == coorLeader.LeaderId).FirstOrDefault();
+                            if (coorLeaderRefer != null)
+                            {
+                                //votantes de cada lider
+                                contavotantes += db.Voters.Where(v => v.ReferId == coorLeaderRefer.ReferId).ToList().Count;
+                            }
+                        }
+                        //votantes de cada coordinador
+                        contavotantes += db.Voters.Where(v => v.ReferId == itemRefer.ReferId).ToList().Count;
+                    }
+                }
+                //lideres del jefe
+                var leaderToCount = db.Leaders.Where(l => l.ReferId == referboss.ReferId).ToList();
+                contalideres = leaderToCount.Count;
+                foreach (var item in leaderToCount)
+                {
+                    var itemleaderRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == item.LeaderId).FirstOrDefault();
+                    if (itemleaderRefer != null)
+                    {
+                        //votantes de cada lider
+                        contavotantes += db.Voters.Where(v => v.ReferId == itemleaderRefer.ReferId).ToList().Count;
+                    }
+                }
+                //votantes directos del jefe
+                contavotantes += Voter.Count;
+            }
+        }
+        if (Link != null)//ENLACE
+        {
+            var referlink = db.Refers.Where(r => r.ReferType == 2 && r.UserId == Link.LinkId).FirstOrDefault();
+            if (referlink != null)
+            {
+                cont2 = Link.LinkId;
+                Voter = db.Voters.Where(v => v.ReferId == referlink.ReferId).ToList();
+                ViewBag.asociacion = Link.Asociacion;
+                ViewBag.lugarTrabajo = Link.WorkPlaceId;
+                ViewBag.perfil = "Enlace";
+
+                //coordinadores
+                var coorToCount = db.Coordinators.Where(l => l.ReferId == referlink.ReferId).ToList();
+                contacoordinadores = coorToCount.Count;
+                //obtengo los votantes de cada coordinador
+                foreach (var item in coorToCount)
+                {
+                    var referItem = db.Refers.Where(r => r.ReferType == 3 && r.UserId == item.CoordinatorId).FirstOrDefault();
+                    if (referItem != null)
+                    {
+                        var coorLeadersCount = db.Leaders.Where(c => c.ReferId == referItem.ReferId).ToList();
+                        foreach (var coorLeader in coorLeadersCount)
+                        {
+                            var coorLeaderRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == coorLeader.LeaderId).FirstOrDefault();
+                            if (coorLeaderRefer != null)
+                            {
+                                contavotantes += db.Voters.Where(v => v.ReferId == coorLeaderRefer.ReferId).ToList().Count;
+                            }
+                        }
+                        contavotantes += db.Voters.Where(v => v.ReferId == referItem.ReferId).ToList().Count;
+                    }
+                }
+                //lideres
+                var leaderToCount = db.Leaders.Where(l => l.ReferId == referlink.ReferId).ToList();
+                contalideres = leaderToCount.Count;
+                //obtengo los votantes de cada lider
+                foreach (var item in leaderToCount)
+                {
+                    var itemRefer = db.Refers.Where(r => r.ReferType == 4 && r.UserId == item.LeaderId).FirstOrDefault();
+                    if (itemRefer != null)
+                    {
+                        contavotantes += db.Voters.Where(v => v.ReferId == itemRefer.ReferId).ToList().Count;
+                    }
+                }
+                //sumo los votantes del enlace
+                contavotantes += Voter.Count;
+            }
+        }
+        if (Coordinator != null)//COORDINADOR
+        {
+            var refercoor = db.Refers.Where(r => r.ReferType == 3 && r.UserId == Coordinator.CoordinatorId).FirstOrDefault();
+            if (refercoor != null)
+            {
+                cont3 = Coordinator.CoordinatorId;
+                Voter = db.Voters.Where(v => v.ReferId == refercoor.ReferId).ToList();
+                ViewBag.asociacion = Coordinator.Associacion;
+                ViewBag.lugarTrabajo = Coordinator.WorkPlaceId;
+                ViewBag.perfil = "Coordinador";
+
+                //lideres
+                var leaderToCount = db.Leaders.Where(l => l.ReferId == refercoor.ReferId).ToList();
+                contalideres = leaderToCount.Count;
+                //obtengo los votantes de cada lider
+                foreach (var item in leaderToCount)
+                {
+                    var itemReferl = db.Refers.Where(r => r.ReferType == 4 && r.UserId == item.LeaderId).FirstOrDefault();
+                    if (itemReferl != null)
+                    {
+                        contavotantes += db.Voters.Where(v => v.ReferId == itemReferl.ReferId).ToList().Count;
+                    }
+                }
+                //sumo los votantes del COORDINADOR
+                contavotantes += Voter.Count;
+            }
+        }
+        if (Leader != null)//LIDER
+        {
+            var referleader = db.Refers.Where(r => r.ReferType == 4 && r.UserId == Leader.LeaderId).FirstOrDefault();
+            if (referleader != null)
+            {
+                cont4 = Leader.LeaderId;
+                Voter = db.Voters.Where(v => v.ReferId == referleader.ReferId).ToList();
+                ViewBag.asociacion = Leader.Associacion;
+                ViewBag.lugarTrabajo = Leader.WorkPlaceId;
+                ViewBag.perfil = "Líder";
+                //sumo los votantes del lider
+                contavotantes += Voter.Count;
+            }
+        }
+
+        if (Model.userId == 1)
+        {
+            var boss = db.Bosses.Where(b => b.Document == Model.Document).FirstOrDefault();
+            var hv = db.HojaVidas.Where(h => h.RolId == 1 && h.UserId == boss.BossId).FirstOrDefault();
+            if (hv != null)
+            {
+                path = hv.Path;
+            }
+        }
+        if (Model.userId == 2)
+        {
+            var link = db.Links.Where(b => b.Document == Model.Document).FirstOrDefault();
+            var hv = db.HojaVidas.Where(h => h.RolId == 2 && h.UserId == link.LinkId).FirstOrDefault();
+            if (hv != null)
+            {
+                path = hv.Path;
+            }
+        }
+        if (Model.userId == 3)
+        {
+            var coordinator = db.Coordinators.Where(b => b.Document == Model.Document).FirstOrDefault();
+            var hv = db.HojaVidas.Where(h => h.RolId == 3 && h.UserId == coordinator.CoordinatorId).FirstOrDefault();
+            if (hv != null)
+            {
+                path = hv.Path;
+            }
+        }
+        if (Model.userId == 4)
+        {
+            var leader = db.Leaders.Where(b => b.Document == Model.Document).FirstOrDefault();
+            var hv = db.HojaVidas.Where(h => h.RolId == 4 && h.UserId == leader.LeaderId).FirstOrDefault();
+            if (hv != null)
+            {
+                path = hv.Path;
+            }
+        }
+        if (Model.userId == 5)
+        {
+            var hv = db.HojaVidas.Where(h => h.RolId == 5 && h.UserId == Model.VoterId).FirstOrDefault();
+            if (hv != null)
+            {
+                path = hv.Path;
+            }
+        }
+        var wp = db.WorkPlaces.Find(ViewBag.lugarTrabajo);
+        <h2 style="font-family:'HelveticaPro';color:#000099;font-size:40px">@Model.FullName</h2>
+        <h3 style="color:#000099">Consulta de Datos</h3>
+        <p>
+            @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+        </p>
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <div class="row">
+                    @if (referido.ReferType == 1)
+                    {
+                        var boss = db.Bosses.Find(referido.UserId);
+                        if (boss != null)
+                        {
+                            <div class="col-md-6">
+                                <div class="thumbnail">
+                                    @if (!string.IsNullOrEmpty(boss.Photo))
+                                    {
+                                        <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                    }                               <div class="caption">
+                                        <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                        <p>@boss.FullName</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    @if (referido.ReferType == 2)
+                    {
+                        var link = db.Links.Find(referido.UserId);
+                        if (link != null)
+                        {
+                            if (link.BossId > 0)
+                            {
+                                var boss = db.Bosses.Find(link.BossId);
+                                if (boss != null)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(boss.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                <p>@boss.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            <div class="col-md-6">
+                                <div class="thumbnail">
+                                    @if (!string.IsNullOrEmpty(link.Photo))
+                                    {
+                                        <img class="img-rounded" src="@Url.Content(link.Photo)" alt="Image" style="width:250px; height:250px" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                    }
+                                    <div class="caption">
+                                        <p>@Html.DisplayNameFor(model => model.LinkId)</p>
+                                        <p>@link.FullName</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    @if (referido.ReferType == 3)
+                    {
+                        var coordinator = db.Coordinators.Find(referido.UserId);
+                        if (coordinator != null)
+                        {
+                            var refe = db.Refers.Find(coordinator.ReferId);
+                            if (refe.ReferType == 1)
+                            {
+                                var boss = db.Bosses.Find(refe.UserId);
+                                if (boss != null)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(boss.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                <p>@boss.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (refe.ReferType == 2)
+                            {
+                                var link = db.Links.Find(coordinator.LinkId);
+                                if (link != null)
+                                {
+                                    if (link.BossId > 0)
+                                    {
+                                        var boss = db.Bosses.Find(link.BossId);
+                                        if (boss != null)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    @if (!string.IsNullOrEmpty(boss.Photo))
+                                                    {
+                                                        <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                                    }
+                                                    <div class="caption">
+                                                        <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                        <p>@boss.FullName</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(link.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(link.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.LinkId)</p>
+                                                <p>@link.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+
+                            <div class="col-md-6">
+                                <div class="thumbnail">
+                                    @if (!string.IsNullOrEmpty(coordinator.Photo))
+                                    {
+                                        <img class="img-rounded" src="@Url.Content(coordinator.Photo)" alt="Image" style="width:250px; height:250px" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                    }
+                                    <div class="caption">
+                                        <p>@Html.DisplayNameFor(model => model.CoordinatorId)</p>
+                                        <p>@coordinator.FullName</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (referido.ReferType == 4)
+                    {
+                        var leader = db.Leaders.Find(referido.UserId);
+                        if (leader != null)
+                        {
+                            var refe = db.Refers.Find(leader.ReferId);
+                            if (refe.ReferType == 1)
+                            {
+                                var boss = db.Bosses.Find(refe.UserId);
+                                if (boss != null)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(boss.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                <p>@boss.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            if (refe.ReferType == 2)
+                            {
+                                var link = db.Links.Find(refe.UserId);
+                                if (link != null)
+                                {
+                                    if (link.BossId > 0)
+                                    {
+                                        var boss = db.Bosses.Find(link.BossId);
+                                        if (boss != null)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    @if (!string.IsNullOrEmpty(boss.Photo))
+                                                    {
+                                                        <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                                    }
+                                                    <div class="caption">
+                                                        <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                        <p>@boss.FullName</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(link.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(link.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.LinkId)</p>
+                                                <p>@link.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            if (refe.ReferType == 3)
+                            {
+                                var coordinator = db.Coordinators.Find(refe.UserId);
+                                if (coordinator != null)
+                                {
+                                    var rf = db.Refers.Find(coordinator.ReferId);
+                                    if (rf.ReferType == 1)
+                                    {
+                                        var boss = db.Bosses.Find(rf.UserId);
+                                        if (boss != null)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    @if (!string.IsNullOrEmpty(boss.Photo))
+                                                    {
+                                                        <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                                    }
+                                                    <div class="caption">
+                                                        <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                        <p>@boss.FullName</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                    if (rf.ReferType == 2)
+                                    {
+                                        var link = db.Links.Find(rf.UserId);
+                                        if (link != null)
+                                        {
+                                            if (link.BossId > 0)
+                                            {
+                                                var boss = db.Bosses.Find(link.BossId);
+                                                if (boss != null)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <div class="thumbnail">
+                                                            @if (!string.IsNullOrEmpty(boss.Photo))
+                                                            {
+                                                                <img class="img-rounded" src="@Url.Content(boss.Photo)" alt="Image" style="width:250px; height:250px" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                                            }
+                                                            <div class="caption">
+                                                                <p>@Html.DisplayNameFor(model => model.BossId)</p>
+                                                                <p>@boss.FullName</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="col-md-6">
+                                                <div class="thumbnail">
+                                                    @if (!string.IsNullOrEmpty(link.Photo))
+                                                    {
+                                                        <img class="img-rounded" src="@Url.Content(link.Photo)" alt="Image" style="width:250px; height:250px" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                                    }
+                                                    <div class="caption">
+                                                        <p>@Html.DisplayNameFor(model => model.LinkId)</p>
+                                                        <p>@link.FullName</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                    <div class="col-md-6">
+                                        <div class="thumbnail">
+                                            @if (!string.IsNullOrEmpty(coordinator.Photo))
+                                            {
+                                                <img class="img-rounded" src="@Url.Content(coordinator.Photo)" alt="Image" style="width:250px; height:250px" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                            }
+                                            <div class="caption">
+                                                <p>@Html.DisplayNameFor(model => model.CoordinatorId)</p>
+                                                <p>@coordinator.FullName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            <div class="col-md-6">
+                                <div class="thumbnail">
+                                    @if (!string.IsNullOrEmpty(leader.Photo))
+                                    {
+                                        <img class="img-rounded" src="@Url.Content(leader.Photo)" alt="Image" style="width:250px; height:250px" />
+                                    }
+                                    else
+                                    {
+                                        <img class="img-rounded" src="~/Content/Leader/Photo.png" alt="Image" style="width:auto; height:250px" />
+                                    }
+                                    <div class="caption">
+                                        <p>@Html.DisplayNameFor(model => model.LeaderId)</p>
+                                        <p>@leader.FullName</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4>Información del Usuario</h4>
+
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left">
+                        Perfíl:
+                    </dt>
+
+                    <dd style="text-align:left">
+                        <strong>@ViewBag.perfil</strong>
+                    </dd>
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.FirstName):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.LastName):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Document):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.Document)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.DateBorn):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Model.DateBorn.ToString("dd/MM/yyyy")
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.CountryId):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.CountryId)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.DepartmentId):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.DepartmentId)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.CityId):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.CityId)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Address):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Barrio):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.Barrio)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.UserName):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Phone):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.CommuneId):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.CommuneId)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        Asociación:
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @ViewBag.asociacion
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Profesion):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.Profesion)
+                    </dd>
+
+
+                    <dt style="text-align:left">
+                        Lugar de Trabajo:
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @if (wp == null)
+                        {
+                            <p>Ninguno</p>
+                        }
+                        else
+                        {
+                            @wp.Name
+                        }
+                    </dd>
+
+                    <dt style="text-align:left">
+                        Referido:
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @if (referido == null)
+                        {
+                            <p>Ninguno</p>
+                        }
+                        else
+                        {
+                            @referido.FullName
+                        }
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.VotingPlaceId):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.VotingPlaceId)
+                    </dd>
+                </dl>
+                @if (Boss != null)
+                {
+                    <h4>Red de @Model.FullName</h4>
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">@contaenlaces</span>
+                            Total Enlaces
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contacoordinadores</span>
+                            Total Coordinadores
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contalideres</span>
+                            Total Líderes
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contavotantes</span>
+                            Total Votantes
+                        </li>
+                    </ul>
+                }
+                @if (Link != null)
+                {
+                    <h4>Red de @Model.FullName</h4>
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">@contacoordinadores</span>
+                            Total Coordinadores
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contalideres</span>
+                            Total Líderes
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contavotantes</span>
+                            Total Votantes
+                        </li>
+                    </ul>
+                }
+                @if (Coordinator != null)
+                {
+                    <h4>Red de @Model.FullName</h4>
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">@contalideres</span>
+                            Total Líderes
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge">@contavotantes</span>
+                            Total Votantes
+                        </li>
+                    </ul>
+                }
+                @if (Leader != null)
+                {
+                    <h4>Red de @Model.FullName</h4>
+                    <hr />
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">@contavotantes</span>
+                            Total Votantes
+                        </li>
+                    </ul>
+                }
+
+                @if (contavotantes > 0)
+                {
+                    <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("RedReport", "Home", new { document = Model.Document, type = 1 })'><span class="glyphicon glyphicon-print"></span> Descargar Excel</a>
+                    <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("RedReport", "Home", new { document = Model.Document, type = 2 })'><span class="glyphicon glyphicon-print"></span> Descargar PDF</a>
+
+                }
+            </div>
+        </div>
+        <br />
+        if (User.IsInRole("User") || User.IsInRole("Secretario"))
+        {
+            if (Voter.Count > 0)
+            {
+                <h3>Votantes Directos</h3>
+                <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("VotantesReport", "Home", new { boss = cont1, link = cont2, coor = cont3, leader = cont4, type = 1 })'><span class="glyphicon glyphicon-print"></span> Descargar Excel</a>
+                <a class="btn btn-success btn-md" style="background-color:#000099;border-radius:25px" target="_blank" href='@Url.Action("VotantesReport", "Home", new { boss = cont1, link = cont2, coor = cont3, leader = cont4, type = 2 })'><span class="glyphicon glyphicon-print"></span> Descargar PDF</a>
+
+            }
+            else
+            {
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            }
+        }
+    }
+</div>

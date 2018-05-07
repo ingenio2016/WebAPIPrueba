@@ -1,0 +1,347 @@
+﻿@model WebAPIPrueba.Models.Coordinator
+
+@{
+    ViewBag.Title = "Coordinadores";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2 style="color:#000099">Administración de Coordinadores</h2>
+    </div>
+    <div class="col-sm-6">
+        <p style="text-align:right">
+            <br />
+            <a style="background-color:#000099;border-radius:25px" href="https://wsp.registraduria.gov.co/censo/_censoResultado.php" target="_blank" class="btn btn-primary">Consulta Registraduría</a>
+        </p>
+
+    </div>
+</div>
+@using (Html.BeginForm("Edit", "Coordinators", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="row">
+            <div class="col-sm-6">
+                @Html.HiddenFor(model => model.CompanyId)
+                @Html.HiddenFor(model => model.CoordinatorId)
+                @Html.HiddenFor(model => model.Photo)
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Document, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Document, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.DateBorn, htmlAttributes: new { @class = "control-label" })
+                        <div class='input-group date' id='datepicker1' style="width:280px">
+                            @Html.EditorFor(model => model.DateBorn, new { htmlAttributes = new { @class = "form-control" } })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DateBorn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Barrio, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Barrio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Barrio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.CommuneId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("CommuneId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CommuneId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <br /><br />
+
+                        @Html.LabelFor(model => model.Associacion, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Associacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Associacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Profesion, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Profesion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Profesion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Especialidad, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Especialidad, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Especialidad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.TiempoExperiencia, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.TiempoExperiencia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TiempoExperiencia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.WorkPlaceId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("WorkPlaceId", null, htmlAttributes: new { @class = "form-control" })<br />
+                        <input id="workPlaceInput" readonly type="text" name="newWorkPlace" value="" placeholder="Digite el nuevo lugar de Trabajo" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.WorkPlaceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.VotingPlaceId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.VotingPlaceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Observation, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Observation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Observation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label" })
+                        <div class='input-group date' id='datepicker' style="width:280px">
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.ReferId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ReferId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.PhotoFile, htmlAttributes: new { @class = "control-label" })
+                        <span class="btn btn-default btn-file">
+                            @Html.TextBoxFor(modelo => modelo.PhotoFile, new { type = "file" })
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input style="background-color:#000099;border-radius:25px" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                        @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker').datetimepicker({ format: 'YYYY/MM/DD' });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker1').datetimepicker({ format: 'YYYY/MM/DD' });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#WorkPlaceId").change(function () {
+                var workId = $("#WorkPlaceId").val()
+                console.log(workId);
+                if (workId == 9999) {
+                    $("#workPlaceInput").removeAttr("readonly");
+                } else {
+                    $("#workPlaceInput").attr("readonly", "readonly");
+                }
+
+            });
+            $("#userId").change(function () {
+                $("#ReferId").empty();
+                $("#ReferId").append('<option value="0">[Seleccione un Usuario]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetPerfil")',
+                    dataType: 'json',
+                    data: { userId: $("#userId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#ReferId").append('<option value="'
+                             + data.ReferId + '">'
+                             + data.FullName + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve departments.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                $("#DepartmentId").empty();
+                $("#DepartmentId").append('<option value="0">[Seleccione un Departamento]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDepartments")',
+                    dataType: 'json',
+                    data: { countryId: $("#CountryId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#DepartmentId").append('<option value="'
+                             + data.DepartmentId + '">'
+                             + data.Name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve departments.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#DepartmentId").change(function () {
+                $("#CityId").empty();
+                $("#CityId").append('<option value="0">[Seleccione una Ciudad]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetCities")',
+                    dataType: 'json',
+                    data: { departmentId: $("#DepartmentId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#CityId").append('<option value="'
+                             + data.CityId + '">'
+                             + data.Name + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve cities.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+}

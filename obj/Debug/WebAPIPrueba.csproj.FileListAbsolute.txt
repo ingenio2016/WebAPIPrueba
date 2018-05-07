@@ -1,0 +1,453 @@
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\ApplicationInsights.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\csc.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Collections.Immutable.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Reflection.Metadata.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\vbc.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.pdb
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Agent.Intercept.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Web.Infrastructure.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\WebGrease.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.pdb
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.csprojResolveAssemblyReference.cache
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.pdb
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\ApplicationInsights.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\csc.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Collections.Immutable.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Reflection.Metadata.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\vbc.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll.config
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.pdb
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Agent.Intercept.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Web.Infrastructure.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Owin.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\WebGrease.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.pdb
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.csprojResolveAssemblyReference.cache
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.dll
+E:\NORTETIC SAS PROYECTOS\Source\Repos\ASP-MVC-Web-API\ASP-MVC-Web-API-New-Version-\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\ApplicationInsights.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\csc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\vbc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\WebGrease.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.csprojResolveAssemblyReference.cache
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\ApplicationInsights.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\csc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\vbc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\WebGrease.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.Web.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.ApplicationInsights.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Helpers.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Mvc.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Optimization.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.WebPages.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Antlr3.Runtime.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Newtonsoft.Json.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Net.Http.Formatting.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\System.Web.Http.WebHost.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\EntityFramework.SqlServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\Ecommerce2016\WebAPIPrueba\WebAPIPrueba\obj\Debug\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\ApplicationInsights.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\csc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\vbc.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\WebAPIPrueba.dll.config
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Antlr3.Runtime.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EntityFramework.SqlServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.Web.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.ApplicationInsights.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Newtonsoft.Json.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Owin.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Net.Http.Formatting.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Helpers.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Http.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Http.WebHost.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Mvc.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Optimization.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.Razor.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\WebGrease.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.Web.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.ApplicationInsights.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Helpers.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Mvc.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Optimization.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.WebPages.Razor.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Antlr3.Runtime.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Newtonsoft.Json.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Net.Http.Formatting.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Http.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\System.Web.Http.WebHost.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EntityFramework.SqlServer.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\WebAPIPrueba.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\WebAPIPrueba.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\PagedList.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\PagedList.Mvc.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\PagedList.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\PagedList.Mvc.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EPPlus.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\EPPlus.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Excel.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Excel.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\WebAPIPrueba.csprojResolveAssemblyReference.cache
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\RdlCompile.cache
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\RdlCompile.compiled

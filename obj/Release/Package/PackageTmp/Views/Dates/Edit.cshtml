@@ -1,0 +1,198 @@
+﻿@model WebAPIPrueba.Models.Dates
+
+@{
+    ViewBag.Title = "Editar Reunión";
+    WebAPIPrueba.Models.WebApiPruebaContext db = new WebAPIPrueba.Models.WebApiPruebaContext();
+    var dateFiles = db.DatesFiles.Where(d => d.DateId == Model.DateId).ToList();
+}
+<style>
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        height: 40%;
+        width: 100%;
+        margin: auto;
+    }
+
+    html {
+        background-image: linear-gradient(to bottom, #e6eff0 80%, #eee);
+        min-height: 100%;
+        background-size: cover;
+        box-sizing: border-box;
+        font-family: Josefin Slab, sans serif;
+    }
+
+    body {
+        height: inherit;
+    }
+
+    article {
+        height: 100vh;
+        -margin-bottom: 5vh;
+        display: flex;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+<h2 style="color:#000099">Administración de Reuniones</h2>
+
+
+@using (Html.BeginForm("Edit", "Dates", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.DateId)
+                @Html.HiddenFor(model => model.EventDate)
+                @Html.HiddenFor(model => model.Hour)
+                @Html.HiddenFor(model => model.HourId)
+                @Html.HiddenFor(model => model.SystemDate)
+                @Html.HiddenFor(model => model.ProfessionalId)
+                @Html.HiddenFor(model => model.organizador)
+                @Html.HiddenFor(model => model.Phone)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.organizador, "Organizador", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.organizador, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.organizador, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EventDate, "Fecha de la reunión", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.EventDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HourId, "Hora de la Reunión", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Hour, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Hour, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observation, "Motivo de la Reunión", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Observation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Observation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, "Lugar de la Reunión", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PersonsNumber, "Cantidad de Asistentes", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.PersonsNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PersonsNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Moderator, "Moderador", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Moderator, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Moderator, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Asistencia, "¿Se realizó esta Reunión?", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Asistencia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Asistencia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">Fotos de la Reunión</label>
+                    <div class="col-md-9">
+                        <div id="multiple">
+                            <input type="file" class="multiple" name="files" multiple />
+                        </div>
+                        <div id="single">
+                            <input type="file" class="single" name="files" /><br />
+                            <input type="file" class="single" name="files" /><br />
+                            <input type="file" class="single" name="files" /><br />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input style="background-color:#000099;border-radius:25px" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                        @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <br />
+            
+            @if (dateFiles.Count > 0)
+            {
+                <div class="carousel slide" id="article-photo-carousel" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img style="height:300px" class="img img-responsive" src="~/Fotos/Logo.png" alt="Chania" width="400" height="300">
+                        </div>
+
+                        @foreach (var item2 in dateFiles)
+                    {
+                    <div class="item">
+                        <img style="height:300px" class="img img-responsive" src="@Url.Content(item2.Path)" alt="Chania" width="400" height="300">
+                    </div>
+
+                    }
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#article-photo-carousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#article-photo-carousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </div>
+                    }
+                    else
+                    {
+                    <img style="height:300px;width:auto" class="img img-rounded" src="~/Fotos/Upload.png" />
+                    }
+
+                </div>
+    </div>
+    
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        $(function () {
+            if(window.FileReader != null){
+                $('#single').hide();
+                $('.single').prop('disabled', true);
+            } else {
+                $('#multiple').hide();
+                $('.multiple').prop('disabled', true);
+            }
+        });
+</script>
+}

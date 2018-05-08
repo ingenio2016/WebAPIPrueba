@@ -5,11 +5,19 @@
 }
 
 <h2>Módulo de envío masivo de SMS</h2>
+<style>
+    #incorrectos {
+        color: darkred;
+    }
 
-@using (Html.BeginForm()) 
+    #correctos {
+        color: darkgreen;
+    }
+</style>
+@*@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+    @Html.AntiForgeryToken()*@
+
     <div class="form-horizontal">
         <h4>Nuevo Mensaje</h4>
         <hr />
@@ -30,19 +38,19 @@
             </div>
         </p>
         <p>
-           <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label class="control-label">Comunas</label>
-                            @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label class="control-label">Lugar de Votación</label>
-                            @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
-                        </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label class="control-label">Comunas</label>
+                        @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
                     </div>
-
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label class="control-label">Lugar de Votación</label>
+                        @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+                    </div>
                 </div>
+
+            </div>
         </p>
         <p>
             <div class="form-horizontal">
@@ -58,10 +66,15 @@
         <br /><hr />
 
         <div class="form-group">
-            <div class="col-md-12">
-                @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            <div class="col-md-3">
+                <label class="control-label">Total Destinatarios</label>
+                <input type="text" name="correctos" id="correctos" class="form-control" value="" readonly="readonly" />
+                @Html.HiddenFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Total Contactos excluídos</label>
+                <input type="text" name="correctos" id="incorrectos" class="form-control" value="" readonly="readonly" />
             </div>
         </div>
 
@@ -77,7 +90,7 @@
 
         <div class="form-group">
             <div class="col-md-12">
-                <input style="background-color:#000099;border-radius:25px" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                <input style="background-color:#000099;border-radius:25px" type="submit" id="btn_send" value="Guardar" class="btn btn-primary btn-sm" />
                 @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
             </div>
         </div>
@@ -111,7 +124,9 @@
             });
     </script>
     <script type="text/javascript">
-            $(document).ready(function () {
+        $(document).ready(function () {
+            var contacts = [];
+            var errorContacts = [];
                 $("#searchContacts").click(function () {
                     $('body').loading({
                         theme: 'dark',
@@ -130,9 +145,38 @@
                         dataType: 'json',
                         data: data,
                         success: function (data) {
-                            $('body').loading('stop');
                             console.log(data);
-                            $("#To").val(data.length + " contactos cargados");
+                            if (data.length > 0) {
+                                _.forEach(data, function (item) {
+                                    if (isNaN(item.Phone)) {
+                                        errorContacts.push(item);
+                                    } else {
+                                        if (item.Phone != null) {
+                                            //Elimino espacios en blanco
+                                            item.Phone = item.Phone.replace(/\s/g, "");
+                                            if (item.Phone.length == 10) {
+                                                var indicador = item.Phone.substring(0, 3);
+                                                if (indicador == "300" || indicador == "301" || indicador == "302" || indicador == "303" || indicador == "304" || indicador == "305" || indicador == "310" || indicador == "311" || indicador == "312" || indicador == "313" || indicador == "314" || indicador == "315" || indicador == "316" || indicador == "317" || indicador == "318" || indicador == "319" || indicador == "320" || indicador == "321" || indicador == "322" || indicador == "323" || indicador == "350" || indicador == "351") {
+                                                    contacts.push(item);
+                                                } else {
+                                                    errorContacts.push(item);
+                                                }
+                                            } else {
+                                                errorContacts.push(item);
+                                            }
+                                        } else {
+                                            errorContacts.push(item);
+                                        }
+                                    }
+                                })
+                            }
+                            console.log(contacts);
+                            console.log(errorContacts);
+
+                            $('body').loading('stop');
+                            $("#correctos").val(contacts.length + " contactos");
+                            $("#incorrectos").val(errorContacts.length + " contactos");
+                            $("#To").val(JSON.stringify(contacts));
                         },
                         error: function (ex) {
                             $('body').loading('stop');
@@ -140,6 +184,33 @@
                     });
                     return false;
                 })
+
+                $("#btn_send").click(function () {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Enviando Correos. Por favor espere ...'
+                    });
+
+                    var body = tinymce.get("Message").getBody();
+                    var message = tinymce.trim(body.innerText);
+
+                    if (message.length > 0) {
+                        var dataMessage = {
+                            contacts: contacts,
+                            body: message
+                        }
+
+                        console.log(dataMessage);
+                    } else {
+                        alert("Debe redactar un mensaje");
+                        return false;
+                    }                   
+                   
+
+                    setTimeout(() => {
+                        $('body').loading('stop');
+                    }, 5000)
+                })
             });
     </script>
-}
+@*}*@

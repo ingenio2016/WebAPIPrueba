@@ -4,6 +4,7 @@
     encoding: 'UTF-8',
     menu: {},
     toolbar: 'undo redo | alignleft aligncenter alignright',
+    statusbar: false,
     setup: function (ed) {
         var messagesCount = 0;
         ed.on('keyup', function (e) {

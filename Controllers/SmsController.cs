@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Newtonsoft.Json;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -82,11 +83,11 @@ namespace WebAPIPrueba.Controllers
         {
             if (ModelState.IsValid)
             {
+                var data = JsonConvert.DeserializeObject(sms.To);
                 try
                 {
                     //ACA VA LA LOGICA DE ENVIO Y EL MENSAJE DE EXITO O FALLO EN EL WEBSERVICE
-                    db.Sms.Add(sms);
-                    db.SaveChanges();
+                    
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -173,6 +174,30 @@ namespace WebAPIPrueba.Controllers
         public JsonResult SearchVoters(string user, string refer, string comuna, string votacion)
         {
             db.Configuration.ProxyCreationEnabled = false;
+            List<string> indicativos = new List<string>();
+            indicativos.Add("300");//tigo
+            indicativos.Add("301");//tigo
+            indicativos.Add("302");//tigo
+            indicativos.Add("304");//tigo
+            indicativos.Add("305");//tigo
+            indicativos.Add("303");//Uff Movil
+            indicativos.Add("310");//Claro
+            indicativos.Add("311");//Claro
+            indicativos.Add("312");//Claro
+            indicativos.Add("313");//Claro
+            indicativos.Add("314");//Claro
+            indicativos.Add("320");//Claro
+            indicativos.Add("321");//Claro
+            indicativos.Add("322");//Claro
+            indicativos.Add("323");//Claro
+            indicativos.Add("315");//Movistar
+            indicativos.Add("316");//Movistar
+            indicativos.Add("317");//Movistar
+            indicativos.Add("318");//Movistar
+            indicativos.Add("319");//Virgin
+            indicativos.Add("350");//Avantel
+            indicativos.Add("351");//Avantel
+
             List<Voter> voters = new List<Voter>();
 
             if (user != "0" && refer != "0")
@@ -226,9 +251,64 @@ namespace WebAPIPrueba.Controllers
                 }
             }
 
+            
+
             var jsonResult = Json(voters, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
+        }
+
+        private object validar_numbers(List<Voter> usersData)
+        {
+            List<string> indicativos = new List<string>();
+            indicativos.Add("300");//tigo
+            indicativos.Add("301");//tigo
+            indicativos.Add("302");//tigo
+            indicativos.Add("304");//tigo
+            indicativos.Add("305");//tigo
+            indicativos.Add("303");//Uff Movil
+            indicativos.Add("310");//Claro
+            indicativos.Add("311");//Claro
+            indicativos.Add("312");//Claro
+            indicativos.Add("313");//Claro
+            indicativos.Add("314");//Claro
+            indicativos.Add("320");//Claro
+            indicativos.Add("321");//Claro
+            indicativos.Add("322");//Claro
+            indicativos.Add("323");//Claro
+            indicativos.Add("315");//Movistar
+            indicativos.Add("316");//Movistar
+            indicativos.Add("317");//Movistar
+            indicativos.Add("318");//Movistar
+            indicativos.Add("319");//Virgin
+            indicativos.Add("350");//Avantel
+            indicativos.Add("351");//Avantel
+
+            List<Voter> userWithErrors = new List<Voter>();
+            List<Voter> validUsers = new List<Voter>();
+            foreach (var item in usersData)
+            {
+                if (item.Phone.Length == 10)
+                {
+                    //VALIDO SI LOS PRIMEROS 3 DIGITOS CORRESPONDEN A NUMEROS DE COLOMBIA
+                    var indicativo = item.Phone.Substring(0, 3);
+                    if (indicativos.Contains(indicativo))
+                    {
+                        validUsers.Add(item);
+                    }
+                    else
+                    {
+                        userWithErrors.Add(item);
+                    }
+                }
+                else
+                {
+                    userWithErrors.Add(item);
+                }
+            }
+
+            var data = new { userError = usersData, userData = indicativos };
+            return data;
         }
 
         protected override void Dispose(bool disposing)

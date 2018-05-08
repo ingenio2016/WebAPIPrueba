@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebAPIPrueba.Models
 {
@@ -14,6 +15,7 @@ namespace WebAPIPrueba.Models
         [Display(Name = "Destinatarios")]
         public string To { get; set; }
 
+        [Required, AllowHtml]
         [Display(Name = "Mensaje")]
         public string Message { get; set; }
 

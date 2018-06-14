@@ -22,8 +22,7 @@ namespace WebAPIPrueba.Controllers
     {
         private WebApiPruebaContext db = new WebApiPruebaContext();
         //SMS NOTIFICATIONS INFO
-        private static string accessKey = "AKIAIQLVXC2KVFW5ATNA";
-        private static string secretKey = "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";
+        
         private static string topicArn = createSMSTopic();
 
         // GET: Sms

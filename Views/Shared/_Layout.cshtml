@@ -38,90 +38,104 @@
                     <ul style="margin:0 auto" class="nav navbar-nav">
                         <li>@Html.ActionLink("|    Mi Red - Cúcuta ", "Index", "Home")</li>
                         @if (User.IsInRole("Admin"))
-                        {
+    {
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Ciudades", "Index", "Cities")</li>
-                                    <li>@Html.ActionLink("Compañías", "Index", "Companies")</li>
-                                    <li>@Html.ActionLink("Departamentos", "Index", "Departments")</li>
-                                    <li>@Html.ActionLink("Paises", "Index", "Countries")</li>
-                                    <li>@Html.ActionLink("Puestos de Votación", "Index", "VotingPlaces")</li>
-                                    <li>@Html.ActionLink("Usuarios", "Index", "Users")</li>
-                                </ul>
-                            </li>
-                        }
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ciudades", "Index", "Cities")</li>
+                            <li>@Html.ActionLink("Compañías", "Index", "Companies")</li>
+                            <li>@Html.ActionLink("Departamentos", "Index", "Departments")</li>
+                            <li>@Html.ActionLink("Paises", "Index", "Countries")</li>
+                            <li>@Html.ActionLink("Puestos de Votación", "Index", "VotingPlaces")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Users")</li>
+                        </ul>
+                    </li>
+}
 
                         @if (User.IsInRole("User"))
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
-                                    <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
-                                    <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
-                                    <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
-                                </ul>
-                            </li>
+    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
+                            <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
+                            <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
+                            <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
+                        </ul>
+                    </li>
 
-                            <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
-                            <li>@Html.ActionLink("|    Reuniones ", "Index", "Dates")</li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
-                                    <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
-                                </ul>
-                            </li>
-                        }
+                    <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
+                    <li>@Html.ActionLink("|    Reuniones ", "Index", "Dates")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
+                            <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
+                            <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Marketing    |<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Sms Masivos", "Create", "Sms")</li>
+                            <li>@Html.ActionLink("Email Masivos", "Create", "Emails")</li>
+                        </ul>
+                    </li>
+}
                         @if (User.IsInRole("Secretario"))
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
-                                    <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
-                                    <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
-                                    <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
-                                </ul>
-                            </li>
+    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
+                            <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
+                            <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
+                            <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
+                        </ul>
+                    </li>
 
-                            <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
-                                    <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
-                                </ul>
-                            </li>
-                        }
+                    <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
+                            <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
+                        </ul>
+                    </li>
+}
                         @if (User.IsInRole("Digitador"))
-                        {
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
-                                    <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
-                                    <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
-                                    <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
-                                </ul>
-                            </li>
+    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Administración<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Jefes", "Index", "Bosses")</li>
+                            <li>@Html.ActionLink("Enlaces", "Index", "Links")</li>
+                            <li>@Html.ActionLink("Coordinadores", "Index", "Coordinators")</li>
+                            <li>@Html.ActionLink("Líderes", "Index", "Leaders")</li>
+                        </ul>
+                    </li>
 
-                            <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
-                            
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
-                                    <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
-                                </ul>
-                            </li>
-                        }
+                    <li>@Html.ActionLink("|    Votantes ", "Index", "Voters")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">|    Cargar Listados    |<b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cargar Usuarios", "ImportExcel", "Excel")</li>
+                            <li>@Html.ActionLink("Cargar Votantes", "ImportExcel", "Voters")</li>
+                        </ul>
+                    </li>
+}
                         @if (User.IsInRole("Reunion"))
-                        {
-                            <li>@Html.ActionLink("|    Reuniones ", "Index", "Dates")</li>
-                        }
+    {
+                    <li>@Html.ActionLink("|    Reuniones ", "Index", "Dates")</li>
+}
 
                     </ul>
 
@@ -136,6 +150,7 @@
     @RenderSection("scripts", required: false)
     <script src="~/Content/loader/jquery.loading.js"></script>
     <script src="~/Scripts/lodash.min.js"></script>
+    <script src="~/Scripts/sweetalert2.all.js"></script>
     <div class="container body-content">
         @RenderBody()
     </div>

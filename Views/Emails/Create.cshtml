@@ -1,0 +1,385 @@
+﻿@model WebAPIPrueba.Models.Email
+
+@{
+    ViewBag.Title = "Crear EMAIL";
+}
+
+<h2>Módulo de envío masivo de Correos electrónicos</h2>
+<style>
+    #incorrectos {
+        color: darkred;
+    }
+
+    #correctos {
+        color: darkgreen;
+    }
+</style>
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()*@
+
+<h4>Nuevo Correo</h4>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<dsiv class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Tipo de Usuario</label>
+                @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Usuario</label>
+                @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Comunas</label>
+                @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Lugar de Votación</label>
+                @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+            </div>
+        </div>
+
+        <p>
+            <div class="form-group">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input style="background-color:#000099;border-radius:25px" type="button" value="Buscar" class="btn btn-info btn-sm" id="searchContacts" />
+                </div>
+            </div>
+
+        </p>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label">Cargar correos vía Excel</label>
+                <i class="fa fa-cloud-upload"></i><input type="file" name="UploadFile" id="txtUploadFile" /><br />
+            </div>
+            <div class="col-sm-12">
+                <p id="errorUpload" style="color:darkgreen"></p>
+                <p id="messageUpload" style="color:darkgreen"></p>
+                <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="submitExcel" name="Submit" value="Cargar Archivo" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label">Cargar correos independientes</label>
+                <br />
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Nombre del Contacto</label>
+                    <input type="text" name="contactName" id="contactName" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Correo electrónico</label>
+                    <input type="text" name="contactEmail" id="contactEmail" class="form-control" value="" />
+                </div>
+
+                <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="submitContact" name="Submit" value="Agregar Contacto" />
+            </div>
+        </div>
+    </div>
+</dsiv>
+
+<br /><hr />
+
+<div class="form-group">
+    <div class="col-md-6">
+        <label class="control-label">Total Destinatarios</label>
+        <input type="text" name="correctos" id="correctos" class="form-control" value="" readonly="readonly" />
+        @Html.HiddenFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+
+        <label class="control-label">Total Contactos excluídos</label>
+        <input type="text" name="correctos" id="incorrectos" class="form-control" value="" readonly="readonly" />
+        <br />
+        <label class="control-label">Asunto</label>
+        <input type="text" name="subject" id="subject" class="form-control" value="" />
+        <br />
+        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+        <textarea class="form-control" name="Message" id="Message"></textarea>
+        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })<br />
+        <div id="character_count"></div>
+        <div id="messages_count"></div>
+
+        <br />
+        <input style="background-color:#000099;border-radius:25px" type="submit" id="btn_send" value="Guardar" class="btn btn-primary btn-sm" />
+        @Html.ActionLink("Volver al Listado", "Index", "Home", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+    </div>
+
+</div>
+
+
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/HomeEmailIndex.js")" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+                $("#userId").change(function () {
+                    $("#ReferId").empty();
+                    $("#ReferId").append('<option value="0">[Seleccione un Usuario]</option>');
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("GetPerfil")',
+                        dataType: 'json',
+                        data: { userId: $("#userId").val() },
+                        success: function (data) {
+                            $.each(data, function (i, data) {
+                                $("#ReferId").append('<option value="'
+                                 + data.ReferId + '">'
+                                 + data.FullName + '</option>');
+                            });
+                        },
+                        error: function (ex) {
+                            alert('No se encontraron usuarios' + ex);
+                        }
+                    });
+                    return false;
+                })
+            });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var contacts = [];
+            var errorContacts = [];
+                $("#submitContact").click(function () {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Verificando Contacto ...'
+                    });
+
+                    setTimeout(() => {
+                        var contactName = $("#contactName").val();
+                        var contactEmail = $("#contactEmail").val();
+
+                        if (contactName != "") {
+                            if (contactEmail.length > 0) {
+                                contacts.push({
+                                    email: contactEmail,
+                                    name: contactName
+                                })
+
+                                $("#contactName").val("");
+                                $("#contactEmail").val("");
+                            }
+                        }
+
+                        $('body').loading('stop');
+                        $("#correctos").val(contacts.length + " contactos");
+                        $("#incorrectos").val(errorContacts.length + " contactos");
+                        $("#To").val(JSON.stringify(contacts));
+                    }, 1000);
+                })
+
+                $("#searchContacts").click(function () {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Consultando Votantes ...'
+                    });
+
+                    $("#correctos").val("");
+                    $("#incorrectos").val("");
+                    $("#To").val("");
+                    contacts = [];
+                    errorContacts = [];
+
+                    var data = {
+                        user: $("#userId option:selected").val(),
+                        refer: $("#ReferId option:selected").val(),
+                        comuna: $("#Comuna option:selected").val(),
+                        votacion: $("#VotingPlaceId option:selected").text()
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("SearchVoters")',
+                        dataType: 'json',
+                        data: data,
+                        success: function (data) {
+                            if (data.length > 0) {
+                                _.forEach(data, function (item) {
+                                    if (item.UserName == "") {
+                                        errorContacts.push({ email: item.UserName, name: item.FirstName + " " + item.LastName });
+                                    } else {
+                                        if (item.UserName != null) {
+                                            //Elimino espacios en blanco
+                                            item.UserName = item.UserName.replace(/\s/g, "");
+                                            if (item.UserName.length > 0) {
+                                                var contact1 = {
+                                                    email: item.UserName,
+                                                    name: item.FirstName + " " + item.LastName
+                                                };
+                                                contacts.push(contact1);
+                                            } else {
+                                                var contactE = {
+                                                    email: item.UserName,
+                                                    name: item.FirstName + " " + item.LastName
+                                                };
+                                                errorContacts.push(contactE);
+                                            }
+                                        } else {
+                                            var contactE = {
+                                                email: item.UserName,
+                                                name: item.FirstName + " " + item.LastName
+                                            };
+                                            errorContacts.push(contactE);
+                                        }
+                                    }
+                                })
+                            }
+
+
+                            $('body').loading('stop');
+                            $("#correctos").val(contacts.length + " contactos");
+                            $("#incorrectos").val(errorContacts.length + " contactos");
+                            $("#To").val(JSON.stringify(contacts));
+                        },
+                        error: function (ex) {
+                            $('body').loading('stop');
+                        }
+                    });
+                    return false;
+                })
+
+
+                $("#submitExcel").click(function (e) {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Cargando Contactos ...'
+                    });
+                    var formData = new FormData();
+                    var totalFiles = document.getElementById("txtUploadFile").files.length;
+                        for (var i = 0; i < totalFiles; i++) {
+                            var file = document.getElementById("txtUploadFile").files[i];
+                            formData.append("FileUpload", file);
+                        }
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("loadExcelContacts")',
+                                dataType: 'json',
+                                contentType: false,
+                                processData: false,
+                                data: formData,
+                                success: function (data) {
+                                    console.log(data);
+                                    if (data.length > 0) {
+                                        _.forEach(data, function (item) {
+                                            if (item.email == "") {
+                                                errorContacts.push({ email: item.email, name: item.name });
+                                            } else {
+                                                if (item.email != null) {
+                                                    if (item.email.length > 0) {
+                                                        var contact1 = {
+                                                            email: item.email,
+                                                            name: item.name
+                                                        };
+                                                        contacts.push(contact1);
+                                                    } else {
+                                                        var contactE = {
+                                                            email: item.email,
+                                                            name: item.name
+                                                        };
+                                                        errorContacts.push(contactE);
+                                                    }
+                                                } else {
+                                                    var contactE = {
+                                                        email: item.email,
+                                                        name: item.name
+                                                    };
+                                                    errorContacts.push(contactE);
+                                                }
+                                            }
+                                        })
+                                    }
+
+
+                                    $('body').loading('stop');
+                                    $("#correctos").val(contacts.length + " contactos");
+                                    $("#incorrectos").val(errorContacts.length + " contactos");
+                                    $("#To").val(JSON.stringify(contacts));
+                                },
+                                error: function (ex) {
+                                    $('body').loading('stop');
+                                }
+                            });
+                            return false;
+                })
+
+
+                $("#btn_send").click(function () {
+
+                    var body = tinymce.get("Message").getBody();
+                    var subject = $("#subject").val();
+                    var message = tinymce.trim(body.innerText);
+
+                    if (message.length > 0) {
+                        if (contacts.length > 0) {
+                            $('body').loading({
+                                theme: 'dark',
+                                message: 'Enviando Correos. Por favor espere ...'
+                            });
+
+                            //var tokenData2 = JSON.parse(window.localStorage.getItem("smsToken"));
+                            var recipients = [];
+
+                            _.forEach(contacts, function (contact) {
+                                recipients.push({ email: contact.email, name: contact.name });
+                            });
+
+                            var dataMessage = {
+                                emails: recipients,
+                                subject: subject,
+                                message: message
+                            }
+
+                            console.log(subject, dataMessage);
+
+                            //Realizo el envio del correo
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("sendEmail")',
+                                data: JSON.stringify(dataMessage),
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                success: function (response) {
+                                    console.log(response);
+                                    if (response.Success == true) {
+                                        swal(
+                                          'Sr Usuario!',
+                                          'El proceso se ha completado exitosamente!',
+                                          'success'
+                                        )
+                                    }
+                                    $("#correctos").val("");
+                                    $("#incorrectos").val("");
+                                    $("#To").val("");
+                                    $("#Message").val("");
+                                    $("#contactEmail").val("");
+                                    $("#contactName").val("");
+                                    $("#subject").val("");
+                                    contacts = [];
+                                    errorContacts = [];
+                                },
+                                error: function (ex) {
+                                    console.error(ex);
+                                }
+                            });
+                        } else {
+                            alert("No se han definido los destinatarios");
+                            return false;
+                        }
+
+                    } else {
+                        alert("Debe redactar un mensaje");
+                        return false;
+                    }
+
+                    setTimeout(() => {
+                        $('body').loading('stop');
+                    }, 5000)
+                })
+            });
+</script>
+@*}*@

@@ -451,3 +451,9 @@ C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAP
 C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\WebAPIPrueba.csprojResolveAssemblyReference.cache
 C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\RdlCompile.cache
 C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\obj\Debug\RdlCompile.compiled
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.Core.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.SimpleNotificationService.dll
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.Core.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.Core.xml
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.SimpleNotificationService.pdb
+C:\Users\NorteTic SAS\Documents\Visual Studio 2015\Projects\VotantesCucuta\WebAPIPrueba\bin\AWSSDK.SimpleNotificationService.xml

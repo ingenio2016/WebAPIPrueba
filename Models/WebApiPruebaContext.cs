@@ -67,6 +67,10 @@ namespace WebAPIPrueba.Models
 
         public DbSet<WorkPlace> WorkPlaces { get; set; }
 
-        public System.Data.Entity.DbSet<WebAPIPrueba.Models.Sms> Sms { get; set; }
+        public DbSet<Sms> Sms { get; set; }
+
+        public DbSet<Email> Emails { get; set; }
+
+        public DbSet<EmailSendStatus> EmailSendStatus { get; set; }
     }
 }

@@ -1,20 +1,30 @@
-﻿using Newtonsoft.Json;
+﻿using Amazon;
+using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
+using Newtonsoft.Json;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebAPIPrueba.Models;
 
 namespace WebAPIPrueba.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class SmsController : Controller
     {
         private WebApiPruebaContext db = new WebApiPruebaContext();
+        //SMS NOTIFICATIONS INFO
+        private static string accessKey = "AKIAIQLVXC2KVFW5ATNA";
+        private static string secretKey = "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";
+        private static string topicArn = createSMSTopic();
 
         // GET: Sms
         public ActionResult Index(int? page = null)
@@ -171,32 +181,58 @@ namespace WebAPIPrueba.Controllers
             return Json(refer);
         }
 
+        [HttpPost]
+        public JsonResult loadExcelContacts()
+        {
+            List<ExcelContacts> contacts = new List<ExcelContacts>();
+            List<Mistakes> errores = new List<Mistakes>();
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var file = Request.Files[i];
+                string extension = Path.GetExtension(file.FileName).ToLower();
+                string connString = "";
+                string[] validFileTypes = { ".xlsx" };
+
+                string path1 = string.Format("{0}/{1}", Server.MapPath("~/Content/ExcelContactsUpload"), file.FileName);
+
+                if (!Directory.Exists(path1))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/Content/ExcelContactsUpload"));
+                }
+                if (validFileTypes.Contains(extension))
+                {
+                    if (System.IO.File.Exists(path1))
+                    { System.IO.File.Delete(path1); }
+                    file.SaveAs(path1);
+
+                    if (extension.Trim() == ".xlsx")
+                    {
+                        connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path1 + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=2\"";
+                        DataTable dt = Utility.ConvertXSLXtoDataTable(path1, connString);
+                        
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            if (row[0].ToString() != "")
+                            {
+                                var contact = new ExcelContacts();
+                                contact.name = row[0].ToString();
+                                contact.phoneNumber = row[1].ToString();
+
+                                contacts.Add(contact);
+                            }
+                        }
+                    }
+                }
+            }
+
+            var jsonResult = Json(contacts, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
         public JsonResult SearchVoters(string user, string refer, string comuna, string votacion)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            List<string> indicativos = new List<string>();
-            indicativos.Add("300");//tigo
-            indicativos.Add("301");//tigo
-            indicativos.Add("302");//tigo
-            indicativos.Add("304");//tigo
-            indicativos.Add("305");//tigo
-            indicativos.Add("303");//Uff Movil
-            indicativos.Add("310");//Claro
-            indicativos.Add("311");//Claro
-            indicativos.Add("312");//Claro
-            indicativos.Add("313");//Claro
-            indicativos.Add("314");//Claro
-            indicativos.Add("320");//Claro
-            indicativos.Add("321");//Claro
-            indicativos.Add("322");//Claro
-            indicativos.Add("323");//Claro
-            indicativos.Add("315");//Movistar
-            indicativos.Add("316");//Movistar
-            indicativos.Add("317");//Movistar
-            indicativos.Add("318");//Movistar
-            indicativos.Add("319");//Virgin
-            indicativos.Add("350");//Avantel
-            indicativos.Add("351");//Avantel
 
             List<Voter> voters = new List<Voter>();
 
@@ -212,13 +248,22 @@ namespace WebAPIPrueba.Controllers
                     voters = new List<Voter>();
                     var voters2 = db.Voters.Where(v => v.ReferId == referUser.ReferId && v.CommuneId == comuna).ToList();
                     voters.AddRange(voters2);
-                }
 
-                if(votacion != "[Seleccione un Lugar de Votación]")
+                    if (votacion != "[Seleccione un Lugar de Votación]")
+                    {
+                        voters = new List<Voter>();
+                        var voters3 = db.Voters.Where(v => v.ReferId == referUser.ReferId && v.CommuneId == comuna && v.VotingPlaceId == votacion).ToList();
+                        voters.AddRange(voters3);
+                    }
+                }
+                else
                 {
-                    voters = new List<Voter>();
-                    var voters3 = db.Voters.Where(v => v.ReferId == referUser.ReferId && v.CommuneId == comuna && v.VotingPlaceId == votacion).ToList();
-                    voters.AddRange(voters3);
+                    if (votacion != "[Seleccione un Lugar de Votación]")
+                    {
+                        voters = new List<Voter>();
+                        var voters3 = db.Voters.Where(v => v.ReferId == referUser.ReferId && v.VotingPlaceId == votacion).ToList();
+                        voters.AddRange(voters3);
+                    }
                 }
             }
             else
@@ -256,6 +301,112 @@ namespace WebAPIPrueba.Controllers
             var jsonResult = Json(voters, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
+        }
+
+        [HttpPost]
+        public JsonResult sendSmsNotification(List<SmsContact> phones, string message)
+        {
+            
+            var client = new AmazonSimpleNotificationServiceClient(accessKey, secretKey, RegionEndpoint.USEast1);
+            PublishRequest smsRequest = new PublishRequest();
+            PublishResponse smsResponse = new PublishResponse();
+            var snsMessageAttributes = new Dictionary<string, MessageAttributeValue>();
+
+            ResponseNotification response = new ResponseNotification();
+            var cont = 0;
+            var phoneCont = 0;
+            foreach (var phone in phones)
+            {
+                phoneCont++;
+
+                var subscribe = subscribePhoneToTopic(phone.phone);
+                if (subscribe.HttpStatusCode == HttpStatusCode.OK)
+                {
+                    cont++;
+                }
+            }
+
+            if (cont == 0)
+            {
+                response.Success = false;
+                response.Message = "Ocurrió un error al suscribir los contactos";
+            }
+
+            //ENVIO DEL SMS
+            if (message != "")
+            {
+                var smsType = new MessageAttributeValue
+                {
+                    DataType = "String",
+                    StringValue = "Transactional"
+                };
+                snsMessageAttributes.Add("AWS.SNS.SMS.SMSType", smsType);
+
+                smsRequest.TopicArn = topicArn;
+                smsRequest.Message = message;
+                smsRequest.MessageAttributes = snsMessageAttributes;
+
+                //SEND SMS
+                try
+                {
+                    smsResponse = client.Publish(smsRequest);
+                    var MessageId = smsResponse.MessageId;
+
+                    //DELETE SUSCRIPTORS
+                    if(MessageId != "")
+                    {
+                        DeleteTopicRequest topicToDelete = new DeleteTopicRequest(topicArn);
+                        client.DeleteTopic(topicToDelete);
+                    }
+
+                    response.Success = true;
+                    response.Message = "Sms campain sended with de ID: " + MessageId;
+                }
+                catch (Exception ex)
+                {
+                    response.Success = false;
+                    response.Message = ex.InnerException.InnerException.Message;
+                }
+            }
+
+
+            var jsonResult = Json(response, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
+
+        public static SubscribeResponse subscribePhoneToTopic(string phone)
+        {
+            topicArn = createSMSTopic();
+            var client = new AmazonSimpleNotificationServiceClient(accessKey, secretKey, RegionEndpoint.USEast1);
+            string areaCode = "+57";
+            
+            SubscribeRequest subscribe = new SubscribeRequest(topicArn, "sms", areaCode + phone);
+            SubscribeResponse resp = client.Subscribe(subscribe);
+
+            return resp;
+        }
+
+        public static string createSMSTopic()
+        {
+            var client = new AmazonSimpleNotificationServiceClient(accessKey, secretKey, RegionEndpoint.USEast1);
+
+            var topicRequest = new CreateTopicRequest
+            {
+                Name = "RedElectoralTopic"
+            };
+            var topicResponse = client.CreateTopic(topicRequest);
+
+            if (topicResponse.HttpStatusCode == HttpStatusCode.OK)
+            {
+                return topicResponse.TopicArn;
+            }
+            else
+            {
+                return "";
+            }
+
         }
 
         private object validar_numbers(List<Voter> usersData)

@@ -4,7 +4,10 @@
     ViewBag.Title = "Departamentos";
 }
 
+
+
 <h2>Administración de Departamentos</h2>
+
 
 
 @using (Html.BeginForm()) 
@@ -44,4 +47,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/tiny_mce/tiny_mce.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/JHomeIndex.js")" type="text/javascript"></script>
 }

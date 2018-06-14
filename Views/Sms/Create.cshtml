@@ -15,90 +15,105 @@
     }
 </style>
 @*@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()*@
+    {
+        @Html.AntiForgeryToken()*@
 
-    <div class="form-horizontal">
-        <h4>Nuevo Mensaje</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <p>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label class="control-label">Tipo de Usuario</label>
-                        @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label class="control-label">Usuario</label>
-                        @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-
-            </div>
-        </p>
-        <p>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label class="control-label">Comunas</label>
-                        @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label class="control-label">Lugar de Votación</label>
-                        @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
-                    </div>
-                </div>
-
-            </div>
-        </p>
-        <p>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <input style="background-color:#000099;border-radius:25px" type="button" value="Buscar" class="btn btn-info btn-md" id="searchContacts" />
-                    </div>
-                </div>
-
-            </div>
-        </p>
-
-        <br /><hr />
-
+<h4>Nuevo Mensaje</h4>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<dsiv class="row">
+    <div class="col-md-8">
         <div class="form-group">
-            <div class="col-md-3">
-                <label class="control-label">Total Destinatarios</label>
-                <input type="text" name="correctos" id="correctos" class="form-control" value="" readonly="readonly" />
-                @Html.HiddenFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Tipo de Usuario</label>
+                @Html.DropDownList("userId", null, htmlAttributes: new { @class = "form-control" })
             </div>
-            <div class="col-md-3">
-                <label class="control-label">Total Contactos excluídos</label>
-                <input type="text" name="correctos" id="incorrectos" class="form-control" value="" readonly="readonly" />
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Usuario</label>
+                @Html.DropDownList("ReferId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Comunas</label>
+                @Html.DropDownList("Comuna", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label class="control-label">Lugar de Votación</label>
+                @Html.DropDownList("VotingPlaceId", null, htmlAttributes: new { @class = "form-control", @style = "background-color:#f5f5f5" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
-                <textarea class="form-control" name="Message" id="Message"></textarea>
-                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })<br />
-                <div id="character_count"></div>
-                <div id="messages_count"></div>
+        <p>
+            <div class="form-group">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input style="background-color:#000099;border-radius:25px" type="button" value="Buscar" class="btn btn-info btn-sm" id="searchContacts" />
+                </div>
             </div>
-        </div>
 
+        </p>
+    </div>
+    <div class="col-md-4">
         <div class="form-group">
             <div class="col-md-12">
-                <input style="background-color:#000099;border-radius:25px" type="submit" id="btn_send" value="Guardar" class="btn btn-primary btn-sm" />
-                @Html.ActionLink("Volver al Listado", "Index", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+                <label class="control-label">Cargar contactos vía Excel</label>
+                <i class="fa fa-cloud-upload"></i><input type="file" name="UploadFile" id="txtUploadFile" /><br />
+            </div>
+            <div class="col-sm-12">
+                <p id="errorUpload" style="color:darkgreen"></p>
+                <p id="messageUpload" style="color:darkgreen"></p>
+                <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="submitExcel" name="Submit" value="Cargar Archivo" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <label class="control-label">Cargar contactos independientes</label>
+                <br />
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Nombre del Contacto</label>
+                    <input type="text" name="contactName" id="contactName" class="form-control" value="" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Celular del Contacto</label>
+                    <input type="number" name="contactPhone" id="contactPhone" class="form-control" value="" />
+                </div>
+
+                <input class="btn btn-primary btn-sm" style="background-color:#000099;border-radius:25px" type="submit" id="submitContact" name="Submit" value="Agregar Contacto" />
             </div>
         </div>
     </div>
+</dsiv>
 
-    <script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/JHomeIndex.js")" type="text/javascript"></script>
-    <script type="text/javascript">
+<br /><hr />
+
+<div class="form-group">
+    <div class="col-md-6">
+        <label class="control-label">Total Destinatarios</label>
+        <input type="text" name="correctos" id="correctos" class="form-control" value="" readonly="readonly" />
+        @Html.HiddenFor(model => model.To, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+
+        <label class="control-label">Total Contactos excluídos</label>
+        <input type="text" name="correctos" id="incorrectos" class="form-control" value="" readonly="readonly" />
+
+        <br />
+        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+        <textarea class="form-control" name="Message" id="Message"></textarea>
+        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })<br />
+        <div id="character_count"></div>
+        <div id="messages_count"></div>
+
+        <br />
+        <input style="background-color:#000099;border-radius:25px" type="submit" id="btn_send" value="Guardar" class="btn btn-primary btn-sm" />
+        @Html.ActionLink("Volver al Listado", "Index", "Home", new { }, new { @class = "btn btn-success btn-sm", @style = "background-color:#333334;border-radius:25px" })
+    </div>
+
+</div>
+
+
+<script src="@Url.Content("~/Scripts/tinymce/tinymce.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/JHomeIndex.js")" type="text/javascript"></script>
+<script type="text/javascript">
         $(document).ready(function () {
                 $("#userId").change(function () {
                     $("#ReferId").empty();
@@ -122,56 +137,108 @@
                     return false;
                 })
             });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var contacts = [];
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var contacts = [];
             var errorContacts = [];
+                $("#submitContact").click(function () {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Verificando Contacto ...'
+                    });
+
+                    setTimeout(() => {
+                        var contactName = $("#contactName").val();
+                        var contactPhone = $("#contactPhone").val();
+
+                        if (contactName != "") {
+                            if (contactPhone.length == 10) {
+                                var indicador = contactPhone.substring(0, 3);
+                                if (indicador == "300" || indicador == "301" || indicador == "302" || indicador == "303" || indicador == "304" || indicador == "305" || indicador == "310" || indicador == "311" || indicador == "312" || indicador == "313" || indicador == "314" || indicador == "315" || indicador == "316" || indicador == "317" || indicador == "318" || indicador == "319" || indicador == "320" || indicador == "321" || indicador == "322" || indicador == "323" || indicador == "350" || indicador == "351") {
+                                    contacts.push({
+                                        phone: contactPhone,
+                                        name: contactName
+                                    })
+
+                                    $("#contactName").val("");
+                                    $("#contactPhone").val(null);
+                                }
+                            }
+                        }
+
+                        $('body').loading('stop');
+                        $("#correctos").val(contacts.length + " contactos");
+                        $("#incorrectos").val(errorContacts.length + " contactos");
+                        $("#To").val(JSON.stringify(contacts));
+                    }, 1000);
+                })
+
                 $("#searchContacts").click(function () {
                     $('body').loading({
                         theme: 'dark',
                         message: 'Consultando Votantes ...'
                     });
+
+                    $("#correctos").val("");
+                    $("#incorrectos").val("");
+                    $("#To").val("");
+                    contacts = [];
+                    errorContacts = [];
+
                     var data = {
                         user: $("#userId option:selected").val(),
                         refer: $("#ReferId option:selected").val(),
                         comuna: $("#Comuna option:selected").val(),
                         votacion: $("#VotingPlaceId option:selected").text()
                     };
-                    console.log(data);
                     $.ajax({
                         type: 'POST',
                         url: '@Url.Action("SearchVoters")',
                         dataType: 'json',
                         data: data,
                         success: function (data) {
-                            console.log(data);
                             if (data.length > 0) {
                                 _.forEach(data, function (item) {
-                                    if (isNaN(item.Phone)) {
+                                    if (item.UserName == "") {
                                         errorContacts.push(item);
                                     } else {
-                                        if (item.Phone != null) {
+                                        if (item.UserName != null) {
                                             //Elimino espacios en blanco
-                                            item.Phone = item.Phone.replace(/\s/g, "");
-                                            if (item.Phone.length == 10) {
+                                            item.UserName = item.UserName.replace(/\s/g, "");
+                                            if (item.UserName.length > 0) {
                                                 var indicador = item.Phone.substring(0, 3);
                                                 if (indicador == "300" || indicador == "301" || indicador == "302" || indicador == "303" || indicador == "304" || indicador == "305" || indicador == "310" || indicador == "311" || indicador == "312" || indicador == "313" || indicador == "314" || indicador == "315" || indicador == "316" || indicador == "317" || indicador == "318" || indicador == "319" || indicador == "320" || indicador == "321" || indicador == "322" || indicador == "323" || indicador == "350" || indicador == "351") {
-                                                    contacts.push(item);
+                                                    var contact1 = {
+                                                        phone: item.Phone,
+                                                        name: item.FirstName + " " + item.LastName
+                                                    };
+                                                    contacts.push(contact1);
                                                 } else {
-                                                    errorContacts.push(item);
+                                                    var contactE = {
+                                                        phone: item.Phone,
+                                                        name: item.FirstName + " " + item.LastName
+                                                    };
+                                                    errorContacts.push(contactE);
                                                 }
                                             } else {
-                                                errorContacts.push(item);
+                                                var contactE = {
+                                                    phone: item.Phone,
+                                                    name: item.FirstName + " " + item.LastName
+                                                };
+                                                errorContacts.push(contactE);
                                             }
                                         } else {
-                                            errorContacts.push(item);
+                                            var contactE = {
+                                                phone: item.Phone,
+                                                name: item.FirstName + " " + item.LastName
+                                            };
+                                            errorContacts.push(contactE);
                                         }
                                     }
                                 })
                             }
-                            console.log(contacts);
-                            console.log(errorContacts);
+
 
                             $('body').loading('stop');
                             $("#correctos").val(contacts.length + " contactos");
@@ -185,32 +252,155 @@
                     return false;
                 })
 
-                $("#btn_send").click(function () {
+
+                $("#submitExcel").click(function (e) {
                     $('body').loading({
                         theme: 'dark',
-                        message: 'Enviando Correos. Por favor espere ...'
+                        message: 'Cargando Contactos ...'
                     });
+                    var formData = new FormData();
+                    var totalFiles = document.getElementById("txtUploadFile").files.length;
+                        for (var i = 0; i < totalFiles; i++) {
+                            var file = document.getElementById("txtUploadFile").files[i];
+                            formData.append("FileUpload", file);
+                        }
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("loadExcelContacts")',
+                                dataType: 'json',
+                                contentType: false,
+                                processData: false,
+                                data: formData,
+                                success: function (data) {
+                                    if (data.length > 0) {
+                                        _.forEach(data, function (item) {
+                                            if (isNaN(item.phoneNumber)) {
+                                                errorContacts.push(item);
+                                            } else {
+                                                if (item.phoneNumber != null) {
+                                                    //Elimino espacios en blanco
+                                                    item.phoneNumber = item.phoneNumber.replace(/\s/g, "");
+                                                    if (item.phoneNumber.length == 10) {
+                                                        var indicador = item.phoneNumber.substring(0, 3);
+                                                        if (indicador == "300" || indicador == "301" || indicador == "302" || indicador == "303" || indicador == "304" || indicador == "305" || indicador == "310" || indicador == "311" || indicador == "312" || indicador == "313" || indicador == "314" || indicador == "315" || indicador == "316" || indicador == "317" || indicador == "318" || indicador == "319" || indicador == "320" || indicador == "321" || indicador == "322" || indicador == "323" || indicador == "350" || indicador == "351") {
+                                                            var contactExcel = {
+                                                                phone: item.phoneNumber,
+                                                                name: item.name
+                                                            }
+                                                            contacts.push(contactExcel);
+                                                        } else {
+                                                            var contactError = {
+                                                                phone: item.phoneNumber,
+                                                                name: item.name
+                                                            }
+                                                            errorContacts.push(contactError);
+                                                        }
+                                                    } else {
+                                                        var contactError = {
+                                                            phone: item.phoneNumber,
+                                                            name: item.name
+                                                        }
+                                                        errorContacts.push(contactError);
+                                                    }
+                                                } else {
+                                                    var contactError = {
+                                                        phone: item.phoneNumber,
+                                                        name: item.name
+                                                    }
+                                                    errorContacts.push(contactError);
+                                                }
+                                            }
+                                        })
+                                    }
+
+
+                                    $('body').loading('stop');
+                                    $("#correctos").val(contacts.length + " contactos");
+                                    $("#incorrectos").val(errorContacts.length + " contactos");
+                                    $("#To").val(JSON.stringify(contacts));
+                                },
+                                error: function (ex) {
+                                    $('body').loading('stop');
+                                }
+                            });
+                            return false;
+                })
+
+
+                $("#btn_send").click(function () {
 
                     var body = tinymce.get("Message").getBody();
                     var message = tinymce.trim(body.innerText);
 
                     if (message.length > 0) {
-                        var dataMessage = {
-                            contacts: contacts,
-                            body: message
+                        if (contacts.length > 0) {
+                            $('body').loading({
+                                theme: 'dark',
+                                message: 'Enviando Mensajes. Por favor espere ...'
+                            });
+
+                            //var tokenData2 = JSON.parse(window.localStorage.getItem("smsToken"));
+                            var recipients = [];
+
+                            _.forEach(contacts, function (contact) {
+                                recipients.push({ phone: contact.phone, name: contact.name });
+                            });
+
+                            var dataMessage = {
+                                phones: recipients,
+                                message: message
+                            }
+
+                            //var dataMessage = {
+                            //    message: message,
+                            //    target_key: "4",
+                            //    group_id: "4",
+                            //    location: "COL",
+                            //    recipients: recipients
+                            //}
+
+                            //Realizo el envio del sms
+                            $.ajax({
+                                type: 'POST',
+                                url: '@Url.Action("sendSmsNotification")',
+                                data: JSON.stringify(dataMessage),
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                success: function (response) {
+                                    console.log(response);
+                                    if (response.Success == true) {
+                                        swal(
+                                          'Sr Usuario!',
+                                          'El proceso se ha completado exitosamente!',
+                                          'success'
+                                        )
+                                    }
+                                    $("#correctos").val("");
+                                    $("#incorrectos").val("");
+                                    $("#To").val("");
+                                    $("#Message").val("");
+                                    contacts = [];
+                                    errorContacts = [];
+                                },
+                                error: function (ex) {
+                                    console.error(ex);
+                                }
+                            });
+                        } else {
+                            alert("No se han definido los destinatarios");
+                            return false;
                         }
 
-                        console.log(dataMessage);
                     } else {
                         alert("Debe redactar un mensaje");
                         return false;
-                    }                   
-                   
+                    }
 
                     setTimeout(() => {
                         $('body').loading('stop');
                     }, 5000)
                 })
             });
-    </script>
+</script>
 @*}*@
